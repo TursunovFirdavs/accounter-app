@@ -70,9 +70,9 @@ const Profile = () => {
         {
           data?.map(item => (
             <div className='flex bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
-              <h3 className='text-xl font-semibold'>25-mart 2024</h3>
+              <h3 className='text-xl font-semibold'>Izoh</h3>
               <div className='flex items-center gap-10'>
-                <p>250000</p>
+                <p>25-mart 2024</p>
                 <p className='text-lg font-semibold'>$9.999.999</p>
                 <button onClick={() => setOpenDialog(true)} className='bg-[#009FB2] text-white py-3 px-4 font-semibold '><MdDelete className='inline-block mb-[5px] text-lg mr-1' />O'chirish</button>
               </div>
