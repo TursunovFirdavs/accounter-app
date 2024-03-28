@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import account from '../../assets/User.svg'
 import { Link } from 'react-router-dom';
 import { TiPlus } from "react-icons/ti";
 import { TiMinus } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
+import DeleteModal from '../../components/Delete-modal';
+
 
 
 
 const Profile = () => {
+  const[openDialog, setOpenDialog] = useState(false)
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   return (
     <div>
@@ -65,17 +69,26 @@ const Profile = () => {
       <div className='mt-[35px] mb-5 flex flex-col gap-3'>
         {
           data?.map(item => (
-            <Link to={'/single'} className='flex bg-blue justify-between px-4 py-3 rounded-2xl' key={item}>
+            <div className='flex bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
               <h3 className='text-xl font-semibold'>25-mart 2024</h3>
-              <div className='flex gap-10'>
-                <p>25-mart 2024</p>
+              <div className='flex items-center gap-10'>
                 <p>250000</p>
                 <p className='text-lg font-semibold'>$9.999.999</p>
+                <button onClick={() => setOpenDialog(true)} className='bg-[#009FB2] text-white py-3 px-4 font-semibold '><MdDelete className='inline-block mb-[5px] text-lg mr-1' />O'chirish</button>
               </div>
-            </Link>
+            </div>
           ))
         }
       </div>
+
+      <DeleteModal
+                    isOpen={openDialog}
+                    // selectedItem={selectedItem}
+                    handleClose={() => {
+                        setOpenDialog(false);
+                        // setSelectedItem({});
+                    }}
+                />
     </div>
   )
 }
