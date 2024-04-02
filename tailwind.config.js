@@ -16,6 +16,10 @@ export default {
     extend: {
       colors: {
         'blue': '#B1E3FA'
+      },
+      screens: {
+        'xl': {'min': '767px'},
+        'sm': {'max': '767px'},
       }
     },
   },
