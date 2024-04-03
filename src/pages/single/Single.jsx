@@ -19,7 +19,7 @@ const Profile = () => {
       <div className='relative'>
         <div className=' bg-blue h-[278px] sm:h-[100px] w-full'></div>
 
-        <div className='absolute top-[250px] sm:top-[40px] sm:left-[15px] flex items-center gap-8 sm:gap-4 left-[150px]'>
+        <div className='absolute top-[165px] sm:top-[40px] sm:left-[15px] flex items-center gap-8 sm:gap-4 left-[50px]'>
           <div className='bg-[#FAFAFA] w-[225px] sm:w-[122px] sm:h-[122px] h-[225px] rounded-full flex items-center justify-center'>
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>

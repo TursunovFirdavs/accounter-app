@@ -10,7 +10,7 @@ const Navbar = () => {
           <h1 className='text-xl sm:text-[16px] font-semibold'>Company name</h1>   
         </Link>
         <div className='flex gap-3'>
-            {/* <Link to={'/login'} className='text-xl font-semibold px-6 py-2 border-black border-2 rounded-xl'>Log in</Link> */}
+            <Link to={'/login'} className='text-xl font-semibold px-6 py-2 border-black border-2 rounded-xl'>Log in</Link>
             <Link to={'/profile'} className='text-xl font-semibold px-6 py-2 sm:text-[14px] sm:py-0 sm:px-3 sm:border border-black border-2 rounded-xl'>Profile</Link>
         </div>
     </div>

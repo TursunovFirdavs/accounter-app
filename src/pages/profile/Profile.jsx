@@ -12,7 +12,7 @@ const Profile = () => {
     <div className='relative'>
         <div className='flex relative gap-[50px] sm:gap-[80px] sm:flex-col'>
         <div className=' bg-blue h-[278px] sm:h-[100px] xl:w-[927px] sm:w-full'></div>
-        <div className='absolute top-[250px] sm:top-[40px] flex items-center gap-8 left-[150px] sm:left-[15px]'>
+        <div className='absolute top-[162px] sm:top-[40px] flex items-center gap-8 left-[50px] sm:left-[15px]'>
             <div className=' bg-[#FAFAFA] w-[225px] sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
                 <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
             </div>
