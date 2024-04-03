@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 const Profile = () => {
     const data = [1,2,3,4,5,6,7,8,9]
   return (
-    <div>
-        <div className='flex gap-[50px] sm:gap-[80px] sm:flex-col'>
+    <div className='relative'>
+        <div className='flex relative gap-[50px] sm:gap-[80px] sm:flex-col'>
         <div className=' bg-blue h-[278px] sm:h-[100px] xl:w-[927px] sm:w-full'></div>
-        <div className='absolute top-[250px] sm:top-[100px] flex items-center gap-8 left-[150px] sm:left-[160px]'>
+        <div className='absolute top-[250px] sm:top-[40px] flex items-center gap-8 left-[150px] sm:left-[15px]'>
             <div className=' bg-[#FAFAFA] w-[225px] sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
                 <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
             </div>
@@ -23,17 +23,17 @@ const Profile = () => {
         </div>
         <div>
             <p className='text-lg sm:text-md'>Umumiy qarz</p>
-            <div className='flex gap-[30px] pr-3 mt-1 mb-3'>
+            <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                 <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
                 <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
             </div>
             <p className='text-lg sm:text-md'>To’langan</p>
-            <div className='flex gap-[30px] pr-3 mt-1 mb-3'>
+            <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                 <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
                 <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
             </div>
             <p className='text-lg sm:text-md'>Qolgan</p>
-            <div className='flex gap-[30px] pr-3 mt-1 mb-3'>
+            <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                 <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
                 <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
             </div>
@@ -59,7 +59,7 @@ const Profile = () => {
                 ))
             }
         </div>
-        <Link to={'/create'} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-0 right-[100px] sm:right-[150px]'>
+        <Link to={'/create'} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
             <IoMdPersonAdd />
         </Link>
     </div>
