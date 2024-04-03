@@ -73,7 +73,7 @@ const Profile = () => {
               <h3 className='text-xl font-semibold sm:text-[16px]'>25-mart 2024</h3>
               <div className='flex items-center xl:gap-10 sm:gap-4'>
                 <p className='text-lg font-semibold sm:text-sm'>$9.999.999</p>
-                <button onClick={() => setOpenDialog(true)} className='bg-[#009FB2] text-white py-3 sm:px-2 px-4 sm:py-2 sm:text-sm font-semibold '><MdDelete className='inline-block mb-[5px] text-lg mr-1 sm:text-[15px]' />O'chirish</button>
+                <button onClick={() => setOpenDialog(true)} className='bg-[#009FB2] text-white py-3 sm:px-2 px-4 sm:text-sm font-semibold '><MdDelete className='inline-block mb-[5px] sm:mb-[4px] text-lg mr-1 sm:text-[15px]' />O'chirish</button>
               </div>
             </div>
           ))
