@@ -21,7 +21,7 @@ const createClient = () => {
         <input className='p-3 outline-none border-2 rounded-lg' {...register('address')} type="text" placeholder='Address' id='address' />
         <label className='text-lg mb-1 mt-4' htmlFor="number">Telefon raqam</label>
         <input className='p-3 outline-none border-2 rounded-lg' {...register('number')} type="text" placeholder='Numer' id='number' />
-        <button className='w-full bg-[#00C5D3] text-lg font-medium text-white py-3 rounded-3xl m-auto my-[60px]' type='submit'>Qo'shish</button>
+        <button className='w-full bg-[#00C1CF] text-lg font-medium text-white py-3 rounded-3xl m-auto my-[60px]' type='submit'>Qo'shish</button>
       </form>
     </div>
   )
