@@ -17,7 +17,7 @@ const Form = ({ title, onsubmit }) => {
         <input className='py-2 px-3 border-2 outline-none rounded-lg' {...register('amount')} type="text" placeholder='Pul miqdori' id='amount' />
         <label className='text-lg mb-1 mt-4' htmlFor="desc">Izoh</label>
         <input className='py-2 px-3 border-2 outline-none rounded-lg' {...register('desc')} type="text" placeholder='Izoh...' id='desc' />
-        <button className='bg-[#009FB2] text-white w-full py-3 rounded-3xl m-auto text-xl font-semibold my-[60px]' type='submit'>{title}</button>
+        <button className='bg-[#00a0b2c5] text-white w-full py-3 rounded-3xl m-auto text-xl font-semibold my-[60px]' type='submit'>{title}</button>
       </form>
     </div>
   )
