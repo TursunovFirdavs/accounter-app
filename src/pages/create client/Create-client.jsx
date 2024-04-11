@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useCreateUser } from '../../service/mutation/useCreateUser'
+import { loadState } from '../../storage'
+import { useNavigate } from 'react-router-dom'
 
 const createClient = () => {
-
+  const [use, setUse] = useState(0)
   const { register, handleSubmit } = useForm()
+  const { mutate } = useCreateUser()
+  const navigate = useNavigate()
 
   const submit = (data) => {
-    console.log(data);
+    mutate(data, {
+      onSuccess: (res) => {
+        console.log(res)
+        navigate('/profile')
+      },
+      onError: err => console.log(err)
+    })
   }
 
   return (
@@ -16,11 +27,14 @@ const createClient = () => {
         <label className='text-lg mb-1' htmlFor="name">Ism</label>
         <input className='p-3 outline-none border-2 rounded-lg' {...register('name')} type="text" placeholder='Ism' id='name' />
         <label className='text-lg mb-1 mt-4' htmlFor="debt">Qarz</label>
-        <input className='p-3 outline-none border-2 rounded-lg' {...register('dept')} type="text" placeholder='Qarz' id='debt' />
-        <label className='text-lg mb-1 mt-4' htmlFor="address">Lokatsiya</label>
+        <div className='w-full flex justify-between'>
+          <input className='w-[47%] p-3 outline-none border-2 rounded-lg' type="number" placeholder="So'm" id='debt' />
+          <input className='w-[47%] p-3 outline-none border-2 rounded-lg' type="number" placeholder='Dollar' id='debt' />
+        </div>
+        {/* <label className='text-lg mb-1 mt-4' htmlFor="address">Lokatsiya</label>
         <input className='p-3 outline-none border-2 rounded-lg' {...register('address')} type="text" placeholder='Address' id='address' />
         <label className='text-lg mb-1 mt-4' htmlFor="number">Telefon raqam</label>
-        <input className='p-3 outline-none border-2 rounded-lg' {...register('number')} type="text" placeholder='Numer' id='number' />
+        <input className='p-3 outline-none border-2 rounded-lg' {...register('number')} type="text" placeholder='Numer' id='number' /> */}
         <button className='w-full bg-[#00C1CF] text-lg font-medium text-white py-3 rounded-3xl m-auto my-[60px]' type='submit'>Qo'shish</button>
       </form>
     </div>
