@@ -5,6 +5,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
 import { loadState } from '../../storage';
 import { useGetUsers } from '../../service/query/useGetUsers';
+import moment from 'moment';
 
 
 
@@ -15,9 +16,9 @@ const Profile = () => {
     const user = loadState('user')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        !loadState('access') && navigate('/')
-    },[])
+    // useEffect(() => {
+    //     !loadState('access') && navigate('/')
+    // },[])
 
     const filteredData = data?.filter(item =>
         item.name?.toLowerCase().includes(search.toLowerCase())
@@ -68,9 +69,9 @@ const Profile = () => {
                     <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item.id}>
                         <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase()+item?.name.slice(1, item?.name.length)}</h3>
                         <div className='flex items-center gap-10 sm:gap-8'>
-                            <p className='sm:hidden'>25-mart 2024</p>
-                            <p className='sm:text-sm'>250000</p>
+                            <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
                             <p className='text-lg sm:text-[16px] font-semibold'>$9.999.999</p>
+                            <p className='text-lg sm:text-[16px] font-semibold'>9.999.999</p>
                         </div>
                     </Link>
                 )) :
@@ -78,9 +79,9 @@ const Profile = () => {
                     <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item}>
                         <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase()+item?.name.slice(1, item?.name.length)}</h3>
                         <div className='flex items-center gap-10 sm:gap-8'>
-                            <p className='sm:hidden'>25-mart 2024</p>
-                            <p className='sm:text-sm'>250000</p>
-                            <p className='text-lg sm:text-[16px] font-semibold'>$9.999.999</p>
+                            <p className='sm:hidden'>{moment(item.updated).format("DD-MM-YYYY")}</p>
+                            <p className='text-lg sm:text-[16px] font-semibold'>{`$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd}`}</p>
+                            <p className='text-lg sm:text-[16px] font-semibold'>{item.unpaid_debt_uzs == null ? 0 : item.unpaid_debt_uzs}</p>
                         </div>
                     </Link>
                 ))

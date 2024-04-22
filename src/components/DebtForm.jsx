@@ -1,13 +1,9 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
-const Form = ({ title, onsubmit }) => {
+const DebtForm = ({ title, onsubmit, initailValue }) => {
 
   const { register, handleSubmit } = useForm()
-
-//   const submit = (data) => {
-//     console.log(data);
-//   }
 
   return (
     <div className='w-[743px] form-shadow sm:w-[352px] m-auto border px-[57px] sm:px-4 rounded-3xl mt-[50px] sm:mt-[100px]'>
@@ -23,4 +19,4 @@ const Form = ({ title, onsubmit }) => {
   )
 }
 
-export default Form
+export default DebtForm

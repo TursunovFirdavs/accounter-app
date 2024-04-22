@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from '../../components/Form'
+import DebtForm from '../../components/DebtForm';
 
 const submit = (data) => {
     console.log(data);
@@ -8,7 +8,7 @@ const submit = (data) => {
 const Decrease = () => {
   return (
     <div>
-        <Form title={'ayirish'} onsubmit={submit} />
+        <DebtForm title={'ayirish'} onsubmit={submit} />
     </div>
   )
 }
