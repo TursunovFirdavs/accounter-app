@@ -1,19 +1,33 @@
 import React, { useState } from 'react'
 import account from '../../assets/User.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { TiPlus } from "react-icons/ti";
 import { TiMinus } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import DeleteModal from '../../components/Delete-modal';
-
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaRegEdit } from "react-icons/fa";
+import { useDeleteUser } from '../../service/mutation/useDeleteUser';
 
 
 
 const Profile = () => {
-  const[openDialog, setOpenDialog] = useState(false)
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const { id } = useParams()
+  const [openDialog, setOpenDialog] = useState(false)
+  const { mutate } = useDeleteUser(id)
+  const navigate = useNavigate()
+  const data = [1, 2, 3, 4, 5]
+  const deleteUser = () => {
+    mutate(id, {
+      onSuccess: (res) => {
+        console.log(res)
+        navigate('/profile')
+      },
+      onError: err => console.log(err)
+    })
+  }
   return (
     <div>
       <div className='relative'>
@@ -30,39 +44,45 @@ const Profile = () => {
                 <FaPhone className='mt-[2px]' />
                 <p>+998 99 999 99 99</p>
               </div>
-              <p className='text-xl font-medium sm:text-sm'>2024-yil 21-mart</p>
+              <div className='flex items-center gap-8'>
+                <p className='text-xl font-medium sm:text-sm'>2024-yil 21-mart</p>
+                <div className="flex items-center gap-2">
+                  <Link to={`/single/edit/${id}`}><FaRegEdit className='text-xl sm:text-sm' /></Link>
+                  <RiDeleteBin5Line onClick={() => deleteUser(id)} className='text-xl cursor-pointer sm:text-sm text-red-500' />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className='mt-[120px] sm:mt-[90px] text-xl sm:text-[14px] sm:leading-[24px] font-semibold mb-4'>
-        <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-1' />
-        Orom bozor, 10-qator, 17-magazen Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, atque doloremque optio deleniti iusto eum. Minus autem veritatis laborum hic quas omnis delectus voluptates, cupiditate quidem nostrum mollitia, voluptatibus natus.
+          <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-1' />
+          Orom bozor, 10-qator, 17-magazen Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, atque doloremque optio deleniti iusto eum. Minus autem veritatis laborum hic quas omnis delectus voluptates, cupiditate quidem nostrum mollitia, voluptatibus natus.
         </div>
 
         <div className='flex sm:flex-col xl:items-center gap-5 xl:justify-between'>
-        <div>
+          <div>
             <p className='text-lg sm:text-md'>Umumiy qarz</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
-                <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
+              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
             </div>
             <p className='text-lg sm:text-md'>To’langan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
-                <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
+              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
             </div>
             <p className='text-lg sm:text-md'>Qolgan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>    
-                <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>    
+              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
             </div>
-        </div>
+          </div>
 
-        <div className='flex xl:flex-col gap-5'> 
-          <Link to={'/add-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-black'><TiPlus  className='text-3xl'/> Qo'shish</Link>
-          <Link to={'/remove-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-[#009FB2]'><TiMinus className='text-3xl' /> Ayirish</Link>
-        </div>
+          <div className='flex xl:flex-col gap-5'>
+            <Link to={'/add-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-black'><TiPlus className='text-3xl' /> Qo'shish</Link>
+            <Link to={'/remove-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-[#009FB2]'><TiMinus className='text-3xl' /> Ayirish</Link>
+          </div>
         </div>
       </div>
 
@@ -81,13 +101,13 @@ const Profile = () => {
       </div>
 
       <DeleteModal
-                    isOpen={openDialog}
-                    // selectedItem={selectedItem}
-                    handleClose={() => {
-                        setOpenDialog(false);
-                        // setSelectedItem({});
-                    }}
-                />
+        isOpen={openDialog}
+        // selectedItem={selectedItem}
+        handleClose={() => {
+          setOpenDialog(false);
+          // setSelectedItem({});
+        }}
+      />
     </div>
   )
 }
