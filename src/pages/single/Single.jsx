@@ -10,12 +10,19 @@ import DeleteModal from '../../components/Delete-modal';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { useDeleteUser } from '../../service/mutation/useDeleteUser';
+import { useGetSingleUser } from '../../service/query/useGetSingleUser';
+import { RiAccountPinBoxFill } from "react-icons/ri";
+import { MdOutlineUpdate } from "react-icons/md";
+import moment from 'moment';
+
 
 
 
 const Profile = () => {
   const { id } = useParams()
   const [openDialog, setOpenDialog] = useState(false)
+  const { data: user } = useGetSingleUser(id)
+  console.log(user);
   const { mutate } = useDeleteUser(id)
   const navigate = useNavigate()
   const data = [1, 2, 3, 4, 5]
@@ -38,14 +45,13 @@ const Profile = () => {
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>
           <div className='flex flex-col mb-7'>
-            <p className='text-5xl pb-4 sm:pb-2 h-[110px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>Jack Bond dfssd.</p>
-            <div>
+            <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>Jack Bond dfssd.</p>
+            <div className='flex gap-[55px]'>
               <div className='text-xl font-medium flex items-center gap-1 mb-[2px] sm:text-sm '>
                 <FaPhone className='mt-[2px]' />
-                <p>+998 99 999 99 99</p>
+                <p>{`+998 ${user?.phone_number}`}</p>
               </div>
               <div className='flex items-center gap-8'>
-                <p className='text-xl font-medium sm:text-sm'>2024-yil 21-mart</p>
                 <div className="flex items-center gap-2">
                   <Link to={`/single/edit/${id}`}><FaRegEdit className='text-xl sm:text-sm' /></Link>
                   <RiDeleteBin5Line onClick={() => deleteUser(id)} className='text-xl cursor-pointer sm:text-sm text-red-500' />
@@ -55,27 +61,38 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className='mt-[120px] sm:mt-[90px] text-xl sm:text-[14px] sm:leading-[24px] font-semibold mb-4'>
-          <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-1' />
-          Orom bozor, 10-qator, 17-magazen Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, atque doloremque optio deleniti iusto eum. Minus autem veritatis laborum hic quas omnis delectus voluptates, cupiditate quidem nostrum mollitia, voluptatibus natus.
+        <div className='mt-[120px] sm:mt-[80px] flex flex-col gap-2 sm:gap-1 mb-4'>
+          <div className='text-xl sm:text-[14px] sm:leading-[24px] font-semibold'>
+            <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-2 sm:mr-1' />
+            <span>Manzil:</span> {user?.location}          
+          </div>
+          <div className='flex items-center gap-2 sm:gap-1'>
+            <RiAccountPinBoxFill className='text-xl sm:text-sm' />
+            <p className='text-xl sm:text-[14px] sm:leading-[24px] font-semibold'>Ro'yxatdan o'tgan sana: {moment(user?.created).format("DD-MM-YYYY")}</p>
+          </div>
+          <div className='flex items-center gap-2 sm:gap-1'>
+            <MdOutlineUpdate className='text-xl sm:text-sm' />
+            <p className='text-xl sm:text-[14px] sm:leading-[24px] font-semibold'>Oxirgi faollik: {moment(user?.updated).format("DD-MM-YYYY HH:mm")}</p>
+          </div>
         </div>
+
 
         <div className='flex sm:flex-col xl:items-center gap-5 xl:justify-between'>
           <div>
             <p className='text-lg sm:text-md'>Umumiy qarz</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.total_debt_uzs}000</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{`$${user?.unpaid_debt_usd}`}</p>
             </div>
             <p className='text-lg sm:text-md'>To’langan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.paid_debt_uzs}</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{`$${user?.paid_debt_usd}`}</p>
             </div>
             <p className='text-lg sm:text-md'>Qolgan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.unpaid_debt_uzs}</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{`$${user?.unpaid_debt_usd}`}</p>
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { instance } from "../../api";
 
-export const useAddPrice = () => {
+export const useChangePrice = () => {
     return useMutation({
         mutationKey: ['add-price'],
         mutationFn: (data) => instance

@@ -9,7 +9,6 @@ import { LuSunMoon } from "react-icons/lu";
 const Navbar = () => {
   const token = loadState('access')
   const user = loadState('user')
-  console.log(token);
   return (
     <div className='flex justify-between items-center px-4 py-6 sm:py-4 sm:px-2.5'>
         <Link to={'/'} className='flex items-center gap-2 sm:gap-1'>

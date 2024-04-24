@@ -6,25 +6,47 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loadState } from '../../storage';
 import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
+import axios from 'axios';
 
 
 
 const Profile = () => {
     const [search, setSearch] = useState('')
+    const [valyut, setValyut] = useState([])
+    const [dollar, setDollar] = useState('')
     const { data } = useGetUsers()
     const user = loadState('user')
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     !loadState('access') && navigate('/')
-    // },[])
+    const fetchData = () => {
+        axios('https://cbu.uz/uz/arkhiv-kursov-valyut/json/')
+        .then(res => setValyut(res.data))
+    }
+
+    const getDollar = () => {
+        
+    }
+
+    useEffect(() => {
+        // !loadState('access') && navigate('/')
+        fetchData()
+    },[])
+
+    valyut?.map(item => {
+        if(item.Ccy == 'USD') {
+            console.log(item.Rate);
+            // setDollar(item.Rate)
+        }
+    })
+    
+
+    console.log(valyut);
+
 
     const filteredData = data?.filter(item =>
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
 
-    console.log(import.meta.env.VITE_PROJECT_API);
-    console.log(data);
 
     return (
         <div className='relative'>

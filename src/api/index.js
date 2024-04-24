@@ -6,7 +6,6 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-    console.log(loadState('access'));
     if(config.url !== '/account/token/') {
        config.headers.Authorization = `Bearer ${loadState('access')}`,
        config.headers["Content-Type"] = 'application/json'
