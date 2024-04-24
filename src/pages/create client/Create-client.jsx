@@ -14,8 +14,10 @@ const createClient = () => {
   const submit = (data) => {
     const currentData = {
       ...data,
-      total_debt_uzs: data.unpaid_debt_uzs,
-      total_debt_usd: data.unpaid_debt_usd,
+      total_debt_uzs: data.unpaid_debt_uzs.length ? data.unpaid_debt_uzs : 0,
+      unpaid_debt_uzs: data.unpaid_debt_uzs.length ? data.unpaid_debt_uzs : 0,
+      total_debt_usd: data.unpaid_debt_usd.length ? data.unpaid_debt_usd : 0,
+      unpaid_debt_usd: data.unpaid_debt_usd.length ? data.unpaid_debt_usd : 0,
     };
     mutate(currentData, {
       onSuccess: (res) => {

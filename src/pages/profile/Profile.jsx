@@ -24,6 +24,7 @@ const Profile = () => {
     );
 
     console.log(import.meta.env.VITE_PROJECT_API);
+    console.log(data);
 
     return (
         <div className='relative'>
@@ -69,18 +70,18 @@ const Profile = () => {
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-8'>
                                 <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold'>$9.999.999</p>
-                                <p className='text-lg sm:text-[16px] font-semibold'>9.999.999</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px] '>$9.999.999</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px] '>9.999.999</p>
                             </div>
                         </Link>
                     )) :
                     data?.map(item => (
                         <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item}>
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
-                            <div className='flex items-center gap-10 sm:gap-8'>
+                            <div className='flex items-center gap-10 sm:gap-5'>
                                 <p className='sm:hidden'>{moment(item.updated).format("DD-MM-YYYY")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold'>{`$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd}`}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold'>{item.unpaid_debt_uzs == null ? 0 : item.unpaid_debt_uzs}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{`$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd + '00'}`}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px]'>{item.unpaid_debt_uzs == null ? 0 : item.unpaid_debt_uzs + '0000'}</p>
                             </div>
                         </Link>
                     ))

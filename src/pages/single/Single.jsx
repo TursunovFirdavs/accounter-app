@@ -80,8 +80,8 @@ const Profile = () => {
           </div>
 
           <div className='flex xl:flex-col gap-5'>
-            <Link to={'/add-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-black'><TiPlus className='text-3xl' /> Qo'shish</Link>
-            <Link to={'/remove-price'} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-[#009FB2]'><TiMinus className='text-3xl' /> Ayirish</Link>
+            <Link to={`/add-price/${id}`} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-black'><TiPlus className='text-3xl' /> Qo'shish</Link>
+            <Link to={`/remove-price/${id}`} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] bg-[#009FB2]'><TiMinus className='text-3xl' /> Ayirish</Link>
           </div>
         </div>
       </div>

@@ -20,8 +20,8 @@ const index = () => {
       <Route path='/single/edit/:id' element={<EditSingle />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/create' element={<CreateClient />} />
-      <Route path='/add-price' element={<Increase />} />
-      <Route path='/remove-price' element={<Decrease />} />
+      <Route path='/add-price/:id' element={<Increase />} />
+      <Route path='/remove-price/:id' element={<Decrease />} />
     </Routes>
   )
 }
