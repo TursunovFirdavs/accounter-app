@@ -6,41 +6,50 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loadState } from '../../storage';
 import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
-import axios from 'axios';
+import { useGetValyut } from '../../service/query/useGetValyut';
+import { useSelector } from 'react-redux';
 
 
 
 const Profile = () => {
     const [search, setSearch] = useState('')
-    const [valyut, setValyut] = useState([])
-    const [dollar, setDollar] = useState('')
     const { data } = useGetUsers()
+    const { data: valyut } = useGetValyut()
     const user = loadState('user')
     const navigate = useNavigate()
-
-    const fetchData = () => {
-        axios('https://cbu.uz/uz/arkhiv-kursov-valyut/json/')
-        .then(res => setValyut(res.data))
-    }
-
-    const getDollar = () => {
-        
-    }
-
+    const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         // !loadState('access') && navigate('/')
-        fetchData()
     },[])
 
-    valyut?.map(item => {
-        if(item.Ccy == 'USD') {
-            console.log(item.Rate);
-            // setDollar(item.Rate)
-        }
-    })
-    
+    const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
+    const dollar = parseFloat(filteredValyut)
 
-    console.log(valyut);
+    console.log(dollar);
+
+    const total_usz = data?.reduce((a,b) => {
+        return a + parseFloat(b.total_debt_uzs)
+    },0)
+
+    const pain_uzs = data?.reduce((a,b) => {
+        return a + parseFloat(b.paid_debt_uzs)
+    },0)
+    const unpain_uzs = data?.reduce((a,b) => {
+        return a + parseFloat(b.unpaid_debt_uzs)
+    },0)
+    const total_usd = data?.reduce((a,b) => {
+        return a + parseFloat(b.total_debt_usd)
+    },0)
+    const pain_usd = data?.reduce((a,b) => {
+        return a + parseFloat(b.paid_debt_usd)
+    },0)
+    const unpain_usd = data?.reduce((a,b) => {
+        return a + parseFloat(b.unpaid_debt_usd)
+    },0)
+
+
+    console.log(total_usz);
+    console.log(data);
 
 
     const filteredData = data?.filter(item =>
@@ -64,18 +73,18 @@ const Profile = () => {
                 <div>
                     <p className='text-lg sm:text-md'>Umumiy qarz</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                        <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-                        <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+                        <p className='text-3xl w-[150px] sm:w-[110px] font-medium sm:text-[24px]'>{total_usz}</p>
+                        <p className='text-3xl w-[110px] sm:w-[85px] font-medium sm:text-[24px]'>{isDollar ? `$${total_usd}` : total_usd * dollar}</p>
                     </div>
                     <p className='text-lg sm:text-md'>To’langan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                        <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-                        <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+                        <p className='text-3xl w-[150px] sm:w-[110px] font-medium sm:text-[24px]'>{pain_uzs}</p>
+                        <p className='text-3xl w-[110px] sm:w-[85px] font-semibold sm:text-[24px]'>{isDollar ? `$${pain_usd}` : pain_usd * dollar}</p>
                     </div>
                     <p className='text-lg sm:text-md'>Qolgan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                        <p className='text-3xl font-medium sm:text-[24px]'>$999.999.999</p>
-                        <p className='text-3xl font-semibold sm:text-[24px]'>$999.999.999</p>
+                        <p className='text-3xl w-[150px] sm:w-[110px] font-medium sm:text-[24px]'>{unpain_uzs}</p>
+                        <p className='text-3xl w-[110px] sm:w-[85px] font-semibold sm:text-[24px]'>{isDollar ? `$${unpain_usd}` : unpain_usd * dollar}</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +111,7 @@ const Profile = () => {
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-5'>
                                 <p className='sm:hidden'>{moment(item.updated).format("DD-MM-YYYY")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{`$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd}`}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{isDollar ? `$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd}` : parseFloat(item.unpaid_debt_usd) * dollar}</p>
                                 <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px]'>{item.unpaid_debt_uzs == null ? 0 : item.unpaid_debt_uzs}</p>
                             </div>
                         </Link>

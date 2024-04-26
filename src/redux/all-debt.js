@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    allDebt: 0
+    isDollar: true
 }
 
 const calculateAllDebt = createSlice({
-    name: 'allDebt',
+    name: 'isDollar',
     initialState,
     reducers: {
-
+        changeValyut: (state) => {
+            return {...state, isDollar: !state.isDollar}
+        }
     }
 })
 
 export default calculateAllDebt.reducer
+
+export const { changeValyut } = calculateAllDebt.actions

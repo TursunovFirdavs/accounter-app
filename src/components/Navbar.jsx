@@ -4,11 +4,21 @@ import logo from '../assets/hero.svg'
 import exchange from '../assets/Exchange.svg'
 import { loadState } from '../storage'
 import { LuSunMoon } from "react-icons/lu";
+import { useDispatch, useSelector } from 'react-redux'
+import { changeValyut } from '../redux/all-debt'
 
 
 const Navbar = () => {
   const token = loadState('access')
   const user = loadState('user')
+  const dispatch = useDispatch()
+  const { isDollar } = useSelector(state => state.isDollar)
+  // console.log(isDollar);
+
+  const handleChangeValyut = () => {
+    dispatch(changeValyut())
+  }
+
   return (
     <div className='flex justify-between items-center px-4 py-6 sm:py-4 sm:px-2.5'>
         <Link to={'/'} className='flex items-center gap-2 sm:gap-1'>
@@ -25,7 +35,7 @@ const Navbar = () => {
               <LuSunMoon className='xl:pt-1 text-3xl sm:text-xl'  />
               <p className='sm:hidden'>Mode</p>
               </div>
-              <div className='flex items-center gap-2 cursor-pointer'>
+              <div onClick={handleChangeValyut} className='flex items-center gap-2 cursor-pointer'>
                 <img className='w-[25px] sm:w-[20px]' src={exchange} alt="" />
                 <p className='sm:hidden'>Exchange</p>
               </div>
