@@ -19,7 +19,7 @@ const Profile = () => {
     const navigate = useNavigate()
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
-        // !loadState('access') && navigate('/')
+        !loadState('access') && navigate('/')
     },[])
 
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
