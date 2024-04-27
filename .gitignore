@@ -7,15 +7,28 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+src
+public
 node_modules
-dist
 dist-ssr
 *.local
+
+index.html
+package-lock.json
+package.json
+postcss.config.js
+README.md
+tailwind.config.js
+vite.config.js
+
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
+.env
+.eslintrc.cjs
+.gitignore
 .DS_Store
 *.suo
 *.ntvs*
