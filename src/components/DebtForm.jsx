@@ -12,7 +12,7 @@ const DebtForm = ({ title, onsubmit, initailValue }) => {
         <label className='text-lg mb-1' htmlFor="amount">Miqdor</label>
         <div className='w-full flex justify-between'>
               <input className='w-[47%] p-3 outline-none border-2 rounded-lg' {...register('amount_uzs')} type="number" placeholder="So'm" id='debt' />
-              <input className='w-[47%] p-3 outline-none border-2 rounded-lg' {...register('amount_usd')} type="number" placeholder='Dollar' id='debt' />
+              <input className='w-[47%] p-3 outline-none border-2 rounded-lg' pattern="\d+(\.\d+)?" {...register('amount_usd')} type="text" placeholder='Dollar' id='debt' />
             </div>
         <label className='text-lg mb-1 mt-4' htmlFor="desc">Izoh</label>
         <input className='p-3 border-2 outline-none rounded-lg' {...register('info')} type="text" placeholder='Izoh...' id='desc' />
