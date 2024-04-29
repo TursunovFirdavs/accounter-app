@@ -8,6 +8,7 @@ import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
+import NumberSpacing from '../../config/number-spacing';
 
 
 
@@ -20,32 +21,32 @@ const Profile = () => {
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
-    },[])
+    }, [])
 
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
 
     console.log(dollar);
 
-    const total_usz = data?.reduce((a,b) => {
+    const total_usz = data?.reduce((a, b) => {
         return a + parseFloat(b.total_debt_uzs)
-    },0)
+    }, 0)
 
-    const pain_uzs = data?.reduce((a,b) => {
+    const pain_uzs = data?.reduce((a, b) => {
         return a + parseFloat(b.paid_debt_uzs)
-    },0)
-    const unpain_uzs = data?.reduce((a,b) => {
+    }, 0)
+    const unpain_uzs = data?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_uzs)
-    },0)
-    const total_usd = data?.reduce((a,b) => {
+    }, 0)
+    const total_usd = data?.reduce((a, b) => {
         return a + parseFloat(b.total_debt_usd)
-    },0)
-    const pain_usd = data?.reduce((a,b) => {
+    }, 0)
+    const pain_usd = data?.reduce((a, b) => {
         return a + parseFloat(b.paid_debt_usd)
-    },0)
-    const unpain_usd = data?.reduce((a,b) => {
+    }, 0)
+    const unpain_usd = data?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_usd)
-    },0)
+    }, 0)
 
 
     console.log(total_usz);
@@ -111,8 +112,8 @@ const Profile = () => {
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-5'>
                                 <p className='sm:hidden'>{moment(item.updated).format("DD-MM-YYYY")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{isDollar ? `$${item.unpaid_debt_usd == null ? 0 : item.unpaid_debt_usd}` : parseFloat(item.unpaid_debt_usd) * dollar}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px]'>{item.unpaid_debt_uzs == null ? 0 : item.unpaid_debt_uzs}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{isDollar ? `$${item.unpaid_debt_usd == null ? 0 : NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(parseFloat(item.unpaid_debt_usd)) * dollar}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px]'>{item.unpaid_debt_uzs == null ? 0 : NumberSpacing(item.unpaid_debt_uzs)}</p>
                             </div>
                         </Link>
                     ))
