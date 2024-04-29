@@ -15,7 +15,7 @@ const ClientForm = ({ submit, initialValue }) => {
             <label className='text-lg mb-1 mt-4' htmlFor="debt">Qarz</label>
             <div className='w-full flex justify-between'>
               <input className='w-[47%] p-3 outline-none border-2 rounded-lg' {...register('unpaid_debt_uzs')} type="number" placeholder="So'm" id='debt' />
-              <input className='w-[47%] p-3 outline-none border-2 rounded-lg' {...register('unpaid_debt_usd')} type="number" placeholder='Dollar' id='debt' />
+              <input className='w-[47%] p-3 outline-none border-2 rounded-lg' {...register('unpaid_debt_usd')} type="text" pattern="\d+(\.\d+)?" placeholder='Dollar' id='debt' />
             </div>
           </>
         }

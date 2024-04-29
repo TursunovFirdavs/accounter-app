@@ -17,6 +17,7 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
+import NumberSpacing from '../../config/number-spacing';
 
 
 
@@ -57,6 +58,7 @@ const Profile = () => {
     setOpenDialog(true)
     setModalItem(item)
   }
+  console.log( NumberSpacing(user?.paid_debt_usd));
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
@@ -68,7 +70,7 @@ const Profile = () => {
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>
           <div className='flex flex-col mb-7'>
-            <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>Jack Bond dfssd.</p>
+            <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>{user?.name}</p>
             <div className='flex gap-[55px]'>
               <div className='text-xl font-medium flex items-center gap-1 mb-[2px] sm:text-sm '>
                 <FaPhone className='mt-[2px]' />
@@ -104,18 +106,18 @@ const Profile = () => {
           <div>
             <p className='text-lg sm:text-md'>Umumiy qarz</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.total_debt_uzs}</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.total_debt_usd}` : parseFloat(user?.total_debt_usd) * dollar}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.total_debt_uzs)}</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(user?.total_debt_usd)}` : NumberSpacing((Number.parseInt(user?.total_debt_usd * dollar)))}</p>
             </div>
             <p className='text-lg sm:text-md'>To’langan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.paid_debt_uzs}</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.paid_debt_usd}` : parseFloat(user?.paid_debt_usd) * dollar}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.paid_debt_uzs)}</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.paid_debt_usd}` : NumberSpacing(Number.parseInt(user?.paid_debt_usd * dollar))}</p>
             </div>
             <p className='text-lg sm:text-md'>Qolgan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{user?.unpaid_debt_uzs}</p>
-              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.unpaid_debt_usd}` : parseFloat(user?.unpaid_debt_usd) * dollar}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.unpaid_debt_uzs)}</p>
+              <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.unpaid_debt_usd}` : NumberSpacing(Number.parseInt(user?.unpaid_debt_usd * dollar))}</p>
             </div>
           </div>
 
@@ -137,7 +139,7 @@ const Profile = () => {
               <div className='flex items-center xl:gap-10 sm:gap-4'>
                 <div className={`${item.type == 'ADD' ? 'text-green-600' : 'text-red-500'} text-right xl:flex gap-10`}>
                   {item.amount_uzs && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${item.amount_uzs}`}</p>}
-                  {item.amount_usd && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${isDollar ? `$${item.amount_usd}` : parseFloat(item.amount_usd * dollar)}`}</p>}
+                  {item.amount_usd && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${isDollar ? `$${item.amount_usd}` : NumberSpacing(Number.parseInt(item.amount_usd * dollar))}`}</p>}
                 </div>
                 <button onClick={() => deleteItem(item)} className='bg-[#009FB2] text-white xl:py-5 py-3.5 sm:px-2 px-4 sm:text-sm font-semibold '><MdDelete className='inline-block mb-[5px] sm:mb-[4px] text-lg mr-1 sm:text-[15px]' />O'chirish</button>
               </div>
