@@ -25,7 +25,7 @@ const Profile = () => {
   const { id } = useParams()
   const [openDialog, setOpenDialog] = useState(false)
   const [modalItem, setModalItem] = useState(null)
-  const { data: user } = useGetSingleUser(id)
+  const { data: user, isLoading } = useGetSingleUser(id)
   const { data: list } = useGetDebtList()
   const { data: valyut } = useGetValyut()
   const { mutate } = useDeleteUser(id)
@@ -58,7 +58,7 @@ const Profile = () => {
     setModalItem(item)
   }
 
-  return (
+  return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
       <div className='relative'>
         <div className=' bg-blue h-[278px] sm:h-[100px] w-full'></div>

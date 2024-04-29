@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const [search, setSearch] = useState('')
-    const { data } = useGetUsers()
+    const { data, isLoading } = useGetUsers()
     const { data: valyut } = useGetValyut()
     const user = loadState('user')
     const navigate = useNavigate()
@@ -57,7 +57,7 @@ const Profile = () => {
     );
 
 
-    return (
+    return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
         <div className='relative'>
             <div className='flex relative gap-[50px] sm:gap-[80px] sm:flex-col'>
                 <div className=' bg-blue h-[278px] sm:h-[100px] xl:w-[927px] sm:w-full'></div>
