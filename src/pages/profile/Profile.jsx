@@ -8,8 +8,6 @@ import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import NumberSpacing from '../../config/number-spacing';
-
 
 
 const Profile = () => {
@@ -27,6 +25,10 @@ const Profile = () => {
     const dollar = parseFloat(filteredValyut)
 
     console.log(dollar);
+
+    const NumberSpacing = (num) => {
+        return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    }
 
     const total_usz = data?.reduce((a, b) => {
         return a + parseFloat(b.total_debt_uzs)

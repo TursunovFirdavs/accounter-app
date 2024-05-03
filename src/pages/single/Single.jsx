@@ -17,8 +17,6 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import NumberSpacing from '../../config/number-spacing';
-
 
 
 
@@ -53,6 +51,10 @@ const Profile = () => {
 
   const data = list?.filter(item => item.store == id)
   console.log(data);
+
+  const NumberSpacing = (num) => {
+    return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+}
 
   const deleteItem = (item) => {
     setOpenDialog(true)
