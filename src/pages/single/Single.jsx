@@ -17,7 +17,6 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import NumberSpacing from '../../assets/NumberSpacing';
 
 
 
@@ -59,6 +58,10 @@ const Profile = () => {
     setModalItem(item)
   }
   console.log( NumberSpacing(user?.paid_debt_usd));
+
+  const NumberSpacing = (num) => {
+    return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+}
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
