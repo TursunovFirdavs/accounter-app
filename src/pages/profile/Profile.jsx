@@ -9,7 +9,6 @@ import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
 
-
 const Profile = () => {
     const [search, setSearch] = useState('')
     const { data, isLoading } = useGetUsers()

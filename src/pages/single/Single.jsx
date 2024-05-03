@@ -19,7 +19,6 @@ import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
 
 
-
 const Profile = () => {
   const { id } = useParams()
   const [openDialog, setOpenDialog] = useState(false)
@@ -61,6 +60,7 @@ const Profile = () => {
     setModalItem(item)
   }
   console.log( NumberSpacing(user?.paid_debt_usd));
+
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
