@@ -8,7 +8,7 @@ import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import NumberSpacing from '../../config/number-spacing';
+import NumberSpacing from '../../assets/NumberSpacing';
 
 
 

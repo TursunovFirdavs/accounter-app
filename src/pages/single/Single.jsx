@@ -17,7 +17,7 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import NumberSpacing from '../../config/number-spacing';
+import NumberSpacing from '../../assets/NumberSpacing';
 
 
 
