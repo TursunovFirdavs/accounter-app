@@ -21,7 +21,6 @@ const createClient = () => {
     };
     mutate(currentData, {
       onSuccess: (res) => {
-        console.log(res)
         navigate('/profile')
       },
       onError: err => console.log(err)

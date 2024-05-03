@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/hero.svg'
-import exchange from '../assets/Exchange.svg'
+import logo from '../../public/hero.svg'
+import exchange from '../../public/Exchange.svg'
 import { loadState } from '../storage'
 import { LuSunMoon } from "react-icons/lu";
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +13,6 @@ const Navbar = () => {
   const user = loadState('user')
   const dispatch = useDispatch()
   const { isDollar } = useSelector(state => state.isDollar)
-  // console.log(isDollar);
 
   const handleChangeValyut = () => {
     dispatch(changeValyut())

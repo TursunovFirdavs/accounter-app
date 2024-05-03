@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import account from '../../assets/User.svg'
+import account from '../../../public/User.svg'
 import { IoSearch } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,7 +23,6 @@ const Profile = () => {
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
 
-    console.log(dollar);
 
     const NumberSpacing = (num) => {
         return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
@@ -48,10 +47,6 @@ const Profile = () => {
     const unpain_usd = data?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_usd)
     }, 0)
-
-
-    console.log(total_usz);
-    console.log(data);
 
 
     const filteredData = data?.filter(item =>

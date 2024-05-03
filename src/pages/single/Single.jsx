@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import account from '../../assets/User.svg'
+import account from '../../../public/User.svg'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { TiPlus } from "react-icons/ti";
 import { TiMinus } from "react-icons/ti";
@@ -30,13 +30,9 @@ const Profile = () => {
   const navigate = useNavigate()
   const { isDollar } = useSelector(state => state.isDollar)
 
-  console.log(user);
 
   const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
-
-    console.log(dollar);
-    console.log(isDollar);
 
   const deleteUser = () => {
     mutate(id, {
@@ -49,7 +45,6 @@ const Profile = () => {
   }
 
   const data = list?.filter(item => item.store == id)
-  console.log(data);
 
   const NumberSpacing = (num) => {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
@@ -59,7 +54,6 @@ const Profile = () => {
     setOpenDialog(true)
     setModalItem(item)
   }
-  console.log( NumberSpacing(user?.paid_debt_usd));
 
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (

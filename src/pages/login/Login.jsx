@@ -12,10 +12,8 @@ const Login = () => {
   const navigate = useNavigate()
 
   const submit = (data) => {
-    console.log(data);
     mutate(data, {
       onSuccess: (res) => {
-        console.log(res);
         navigate('/profile')
         setIsUser(true)
         saveState('user', data)
@@ -23,7 +21,6 @@ const Login = () => {
         saveState('refresh', res.refresh)
       },
       onError: err => {
-        console.log(err)
         setIsUser(false)
       }
     })

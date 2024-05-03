@@ -9,10 +9,8 @@ const Decrease = () => {
   const navigate = useNavigate()
 
   const submit = (data) => {
-    console.log({...data, type: 'SUB', store:id});
     mutate({...data, type: 'SUB', store:id}, {
       onSuccess: (res) => {
-        console.log(res);
         navigate(`/single/${id}`)
       },
       onError: err => console.log(err)

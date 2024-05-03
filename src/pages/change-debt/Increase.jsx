@@ -9,10 +9,8 @@ const Increase = () => {
   const navigate = useNavigate()
   
   const submit = (data) => {
-    console.log({...data, type: 'ADD', id});
     mutate({...data, type: 'ADD', store:id}, {
       onSuccess: (res) => {
-        console.log(res);
         navigate(`/single/${id}`)
       },
       onError: err => console.log(err)

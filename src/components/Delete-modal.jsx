@@ -6,9 +6,7 @@ import { client } from '../config/query-client';
 
 
 export default function DeleteModal(props) {
-//   let [isOpen, setIsOpen] = useState(true)
   const {isOpen, handleClose, selectedItem} = props
-  console.log(selectedItem);
   const { mutate } = useDeleteDebt()
   const navigate = useNavigate()
 

@@ -11,11 +11,9 @@ const EditSingle = () => {
     const { mutate } = useEditUser(id)
     const navigate = useNavigate()
     const { data, isLoading } = useGetSingleUser(id)
-    console.log(data);
     const submit = (data) => {
         mutate(data, {
             onSuccess: (res) => {
-                console.log(res)
                 navigate('/profile')
             },
             onError: err => console.log(err)
