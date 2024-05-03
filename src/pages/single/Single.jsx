@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import account from '../../../public/User.svg'
+import account from '../../assets/User.svg'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { TiPlus } from "react-icons/ti";
 import { TiMinus } from "react-icons/ti";

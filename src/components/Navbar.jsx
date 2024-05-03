@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../public/hero.svg'
-import exchange from '../../public/Exchange.svg'
+import logo from '../assets/hero.svg'
+import exchange from '../assets/Exchange.svg'
 import { loadState } from '../storage'
 import { LuSunMoon } from "react-icons/lu";
 import { useDispatch, useSelector } from 'react-redux'

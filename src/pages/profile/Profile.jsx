@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import account from '../../../public/User.svg'
+import account from '../../assets/User.svg'
 import { IoSearch } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';

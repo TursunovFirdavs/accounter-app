@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import hero from '../../../public/hero.svg'
+import hero from '../../assets/hero.svg'
 import { loadState } from '../../storage'
 import { useNavigate } from 'react-router-dom'
 
