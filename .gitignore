@@ -1,6 +1,5 @@
 # Logs
 logs
-/node_modules
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -11,6 +10,7 @@ lerna-debug.log*
 # Source Code and Assets
 src
 public
+/node_modules
 
 # Build Artifacts
 dist-ssr
@@ -20,7 +20,8 @@ dist-ssr
 
 # Common Configuration Files
 index.html
-package-lock.json  # Keep for dependency management (important!)
+package-lock.json
+package.json  
 postcss.config.js
 README.md
 tailwind.config.js
@@ -28,9 +29,9 @@ vite.config.js
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json  # Keep to manage VS Code extensions
+!.vscode/extensions.json  
 .idea
-.env  # Exclude, consider adding a non-committed .env.example for reference
+.env  
 .eslintrc.cjs
 .gitignore
 .DS_Store
@@ -38,7 +39,7 @@ vite.config.js
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?  # Service worker files
+*.sw? 
 
 # Testing Files
-__tests__/__snapshots__  # Adjust for your testing framework's naming conventions
+__tests__/__snapshots__  
