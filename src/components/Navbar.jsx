@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/hero.svg'
+import logo from '../assets/hero.png'
 import exchange from '../assets/Exchange.svg'
 import { loadState } from '../storage'
 import { LuSunMoon } from "react-icons/lu";

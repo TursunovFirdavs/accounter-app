@@ -22,6 +22,7 @@ const Login = () => {
       },
       onError: err => {
         setIsUser(false)
+        console.log(err);
       }
     })
   }
