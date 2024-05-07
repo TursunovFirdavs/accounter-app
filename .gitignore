@@ -7,39 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Source Code and Assets
-src
-public
-/node_modules
-
-# Build Artifacts
+node_modules
+dist
 dist-ssr
-
-# Temporary Files and Backups
 *.local
-
-# Common Configuration Files
-index.html
-package-lock.json
-package.json  
-postcss.config.js
-README.md
-tailwind.config.js
-vite.config.js
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json  
+!.vscode/extensions.json
 .idea
-.env  
-.eslintrc.cjs
-.gitignore
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw? 
-
-# Testing Files
-__tests__/__snapshots__  
+*.sw?
