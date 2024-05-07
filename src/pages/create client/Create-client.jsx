@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import ClientForm from '../../components/ClientForm'
 
 const createClient = () => {
-  const [use, setUse] = useState(0)
 
   const { mutate } = useCreateUser()
   const navigate = useNavigate()

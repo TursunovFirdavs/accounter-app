@@ -52,6 +52,7 @@ const Profile = () => {
     const filteredData = data?.filter(item =>
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
+    console.log(filteredData);
 
 
     return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
@@ -70,18 +71,18 @@ const Profile = () => {
                 <div>
                     <p className='text-lg sm:text-md'>Umumiy qarz</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd)}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px] bg-red-300'>{NumberSpacing(total_usz)} </p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
                     </div>
                     <p className='text-lg sm:text-md'>To’langan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(pain_uzs)}</p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${pain_usd}` : NumberSpacing((Number.parseInt(pain_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(pain_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(pain_usd * dollar)))}</p>
                     </div>
                     <p className='text-lg sm:text-md'>Qolgan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${unpain_usd}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                     </div>
                 </div>
             </div>
@@ -92,24 +93,13 @@ const Profile = () => {
             </div>
 
             <div className='mt-[35px] mb-5 flex flex-col gap-3'>
-                {search.length > 1 ?
-                    filteredData?.map(item => (
+                {filteredData?.map(item => (
                         <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item.id}>
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-8'>
                                 <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
                                 <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px] '>$9.999.999</p>
                                 <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px] '>9.999.999</p>
-                            </div>
-                        </Link>
-                    )) :
-                    data?.map(item => (
-                        <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item}>
-                            <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
-                            <div className='flex items-center gap-10 sm:gap-5'>
-                                <p className='sm:hidden'>{moment(item.updated).format("DD-MM-YYYY")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px]'>{isDollar ? `$${item.unpaid_debt_usd == null ? 0 : NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing((Number.parseInt(item.unpaid_debt_usd * dollar)))}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px]'>{item.unpaid_debt_uzs == null ? 0 : NumberSpacing(parseFloat(item.unpaid_debt_uzs))}</p>
                             </div>
                         </Link>
                     ))

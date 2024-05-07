@@ -102,17 +102,17 @@ const Profile = () => {
           <div>
             <p className='text-lg sm:text-md'>Umumiy qarz</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.total_debt_uzs)}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[170px] sm:w-[140px] bg-red-200'>{NumberSpacing(user?.total_debt_uzs)}</p>
               <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(user?.total_debt_usd)}` : NumberSpacing((Number.parseInt(user?.total_debt_usd * dollar)))}</p>
             </div>
             <p className='text-lg sm:text-md'>To’langan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.paid_debt_uzs)}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[170px] sm:w-[140px]'>{NumberSpacing(user?.paid_debt_uzs)}</p>
               <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.paid_debt_usd}` : NumberSpacing(Number.parseInt(user?.paid_debt_usd * dollar))}</p>
             </div>
             <p className='text-lg sm:text-md'>Qolgan</p>
             <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-              <p className='text-3xl font-medium sm:text-[24px] w-[150px] sm:w-[120px]'>{NumberSpacing(user?.unpaid_debt_uzs)}</p>
+              <p className='text-3xl font-medium sm:text-[24px] w-[170px] sm:w-[140px]'>{NumberSpacing(user?.unpaid_debt_uzs)}</p>
               <p className='text-3xl font-semibold sm:text-[24px]'>{isDollar ? `$${user?.unpaid_debt_usd}` : NumberSpacing(Number.parseInt(user?.unpaid_debt_usd * dollar))}</p>
             </div>
           </div>
