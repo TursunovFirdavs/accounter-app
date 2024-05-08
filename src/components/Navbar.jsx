@@ -13,7 +13,7 @@ const Navbar = () => {
   const user = loadState('user')
   const dispatch = useDispatch()
   const { isDollar } = useSelector(state => state.isDollar)
-
+  console.log(token);
   const handleChangeValyut = () => {
     dispatch(changeValyut())
   }
