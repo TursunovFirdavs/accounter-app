@@ -66,7 +66,7 @@ const Profile = () => {
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>
           <div className='flex flex-col mb-7'>
-            <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>{user?.name}</p>
+            <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>{user?.name?.slice(0, 1).toUpperCase() + user?.name?.slice(1, user?.name?.length)}</p>
             <div className='flex gap-[55px]'>
               <div className='text-xl font-medium flex items-center gap-1 mb-[2px] sm:text-sm '>
                 <FaPhone className='mt-[2px]' />

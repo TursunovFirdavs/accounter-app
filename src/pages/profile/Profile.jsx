@@ -71,7 +71,7 @@ const Profile = () => {
                 <div>
                     <p className='text-lg sm:text-md'>Umumiy qarz</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px] bg-red-300'>{NumberSpacing(total_usz)} </p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
                     </div>
                     <p className='text-lg sm:text-md'>To’langan</p>
