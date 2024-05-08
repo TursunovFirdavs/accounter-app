@@ -14,11 +14,11 @@ const Login = () => {
   const submit = (data) => {
     mutate(data, {
       onSuccess: (res) => {
-        navigate('/profile')
         setIsUser(true)
         saveState('user', data)
         saveState('access', res.access)
         saveState('refresh', res.refresh)
+        navigate('/profile')
       },
       onError: err => {
         setIsUser(false)
