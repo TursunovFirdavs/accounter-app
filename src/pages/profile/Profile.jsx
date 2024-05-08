@@ -98,8 +98,8 @@ const Profile = () => {
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-8'>
                                 <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px] '>$9.999.999</p>
-                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px] '>9.999.999</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[90px] sm:w-[80px] '>{`$${NumberSpacing(item.unpaid_debt_usd)}`}</p>
+                                <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[110px] '>{`$${NumberSpacing(item.unpaid_debt_uzs)}`}</p>
                             </div>
                         </Link>
                     ))
