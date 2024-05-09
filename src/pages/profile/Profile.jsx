@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const [search, setSearch] = useState('')
-    const [data, setData] = useState([])
+    // const [data, setData] = useState([])
     const { data: userData, isLoading, isError } = useGetUsers()
     const { data: valyut } = useGetValyut()
     const user = loadState('user')
@@ -19,14 +19,9 @@ const Profile = () => {
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
-        if(userData === 401) {
-            navigate('/login')
-        }
-        else {
-            setData(userData)
-        }
+        userData === 401 && navigate('/login')
     }, [])
-
+    const data = userData != 401 && userData
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
 
@@ -59,7 +54,7 @@ const Profile = () => {
     const filteredData = data?.filter(item =>
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
-    console.log(filteredData);
+    // console.log(filteredData);
 
 
     return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
