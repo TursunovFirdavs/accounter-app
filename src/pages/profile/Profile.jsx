@@ -19,8 +19,10 @@ const Profile = () => {
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
-        userData == 401 && navigate('/login')
     }, [])
+    if(userData === 401) {
+        navigate('/login')
+    }
     const data = userData !== 401 ? userData : undefined
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
