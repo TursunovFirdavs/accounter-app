@@ -21,11 +21,11 @@ const Profile = () => {
         !loadState('access') && navigate('/')
         userData === 401 && navigate('/login')
     }, [])
-    const data = userData != 401 && userData
+    const data = userData !== 401 ? userData : undefined
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
 
-
+    console.log(data);
     const NumberSpacing = (num) => {
         return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     }
