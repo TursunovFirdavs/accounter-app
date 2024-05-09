@@ -11,13 +11,20 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const [search, setSearch] = useState('')
-    const { data, isLoading } = useGetUsers()
+    const [data, setData] = useState([])
+    const { data: userData, isLoading, isError } = useGetUsers()
     const { data: valyut } = useGetValyut()
     const user = loadState('user')
     const navigate = useNavigate()
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
+        if(userData === 401) {
+            navigate('/login')
+        }
+        else {
+            setData(userData)
+        }
     }, [])
 
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
@@ -72,17 +79,17 @@ const Profile = () => {
                     <p className='text-lg sm:text-md'>Umumiy qarz</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
                     </div>
                     <p className='text-lg sm:text-md'>To’langan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(pain_uzs)}</p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(pain_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(pain_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(pain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(pain_usd * dollar)))}</p>
                     </div>
                     <p className='text-lg sm:text-md'>Qolgan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
-                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                     </div>
                 </div>
             </div>

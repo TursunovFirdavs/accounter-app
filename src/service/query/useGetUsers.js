@@ -7,5 +7,6 @@ export const useGetUsers = () => {
         queryFn: () => instance
             .get('/store/')
             .then(res => res.data)
+            .catch(err => err.response && err.response.status)
     })
 }
