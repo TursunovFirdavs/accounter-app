@@ -5,7 +5,7 @@ import { useChangePrice } from '../../service/mutation/useChangePrice';
 
 const Increase = () => {
   const { id } = useParams()
-  const { mutate } = useChangePrice()
+  const { mutate, isPending } = useChangePrice()
   const navigate = useNavigate()
   
   const submit = (data) => {
@@ -19,7 +19,7 @@ const Increase = () => {
 
   return (
     <div>
-      <DebtForm title={"qo'shish"} onsubmit={submit} />
+      <DebtForm title={"qo'shish"} onsubmit={submit} loading={isPending} />
     </div>
   )
 }

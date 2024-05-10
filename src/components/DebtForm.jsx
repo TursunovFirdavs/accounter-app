@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
-const DebtForm = ({ title, onsubmit, initailValue }) => {
+const DebtForm = ({ title, onsubmit, initailValue, loading }) => {
 
   const { register, handleSubmit } = useForm()
 
@@ -16,7 +16,7 @@ const DebtForm = ({ title, onsubmit, initailValue }) => {
             </div>
         <label className='text-lg mb-1 mt-4' htmlFor="desc">Izoh</label>
         <input className='p-3 border-2 outline-none rounded-lg' {...register('info')} type="text" placeholder='Izoh...' id='desc' />
-        <button className='bg-[#00C1CF] text-white w-full py-3 rounded-3xl m-auto text-xl font-semibold my-[60px]' type='submit'>{title}</button>
+        <button disabled={loading ? true : false} className='bg-[#00C1CF] text-white w-full py-3 rounded-3xl m-auto text-xl font-semibold my-[60px]' type='submit'>{title}</button>
       </form>
     </div>
   )

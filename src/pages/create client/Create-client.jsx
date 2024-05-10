@@ -7,7 +7,7 @@ import ClientForm from '../../components/ClientForm'
 
 const createClient = () => {
 
-  const { mutate } = useCreateUser()
+  const { mutate, isPending } = useCreateUser()
   const navigate = useNavigate()
 
   const submit = (data) => {
@@ -28,7 +28,7 @@ const createClient = () => {
 
   return (
     <div>
-      <ClientForm submit={submit} />
+      <ClientForm submit={submit} loading={isPending}  />
     </div>
   )
 }
