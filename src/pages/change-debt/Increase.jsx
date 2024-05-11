@@ -11,7 +11,7 @@ const Increase = () => {
   const submit = (data) => {
     mutate({...data, type: 'ADD', store:id}, {
       onSuccess: (res) => {
-        navigate(`/single/${id}`)
+        navigate(-1)
       },
       onError: err => console.log(err)
     })

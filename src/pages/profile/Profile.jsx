@@ -8,19 +8,23 @@ import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
+import { TiMinus, TiPlus } from 'react-icons/ti';
+import { useGetDebtList } from '../../service/query/useGetDebtList';
+import { MdDelete } from 'react-icons/md';
 
 const Profile = () => {
     const [search, setSearch] = useState('')
-    // const [data, setData] = useState([])
+    const [isClient, setISClient] = useState(true)
     const { data: userData, isLoading, isError } = useGetUsers()
     const { data: valyut } = useGetValyut()
+    const { data: list } = useGetDebtList()
     const user = loadState('user')
     const navigate = useNavigate()
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
     }, [])
-    if(userData === 401) {
+    if (userData === 401) {
         navigate('/login')
     }
     const data = userData !== 401 ? userData : undefined
@@ -33,29 +37,33 @@ const Profile = () => {
     }
 
     const total_usz = data?.reduce((a, b) => {
-        return a + parseFloat(b.total_debt_uzs)
+        return b.name != 'firma' && a + parseFloat(b.total_debt_uzs)
     }, 0)
 
     const pain_uzs = data?.reduce((a, b) => {
-        return a + parseFloat(b.paid_debt_uzs)
+        return b.name != 'firma' && a + parseFloat(b.paid_debt_uzs)
     }, 0)
     const unpain_uzs = data?.reduce((a, b) => {
-        return a + parseFloat(b.unpaid_debt_uzs)
+        return b.name != 'firma' && a + parseFloat(b.unpaid_debt_uzs)
     }, 0)
     const total_usd = data?.reduce((a, b) => {
-        return a + parseFloat(b.total_debt_usd)
+        return b.name != 'firma' && a + parseFloat(b.total_debt_usd)
     }, 0)
     const pain_usd = data?.reduce((a, b) => {
-        return a + parseFloat(b.paid_debt_usd)
+        return b.name != 'firma' && a + parseFloat(b.paid_debt_usd)
     }, 0)
     const unpain_usd = data?.reduce((a, b) => {
-        return a + parseFloat(b.unpaid_debt_usd)
+        return b.name != 'firma' && a + parseFloat(b.unpaid_debt_usd)
     }, 0)
 
 
-    const filteredData = data?.filter(item =>
+    const filteredData = data?.filter(item => item.name != 'firma' &&
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
+
+    const firm = data?.find(item => item.name === 'firma')
+    const firmData = list?.filter(item => item.store === firm.id)
+    console.log(firm);
     console.log(filteredData);
 
 
@@ -88,16 +96,27 @@ const Profile = () => {
                         <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
                         <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                     </div>
+                    <p className='text-lg sm:text-md'>Firmadan olingan</p>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1 mb-3'>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(firm?.unpaid_debt_uzs))}</p>
+                        <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(Number.parseInt(firm?.unpaid_debt_usd)?.toFixed(2))}` : NumberSpacing((Number.parseInt(firm?.unpaid_debt_usd * dollar)))}</p>
+                    </div>
                 </div>
             </div>
 
-            <div className='flex justify-between px-5 sm:px-3 border mt-[140px] sm:mt-[50px] items-center border-black/40'>
-                <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
-                <IoSearch />
+            <div className='mt-5 flex justify-around'>
+                <p onClick={() => setISClient(false)} className={`text-white w-full text-center py-3 ${!isClient ? 'bg-black/70' : 'bg-black'}`}>Firma</p>
+                <p onClick={() => setISClient(true)} className={`bg-black text-white w-full text-center py-3 ${isClient ? 'bg-black/70' : 'bg-black'}`}>Client</p>
             </div>
 
-            <div className='mt-[35px] mb-5 flex flex-col gap-3'>
-                {filteredData?.map(item => (
+            {isClient ? <div>
+                <div className='flex justify-between px-5 sm:px-3 border mt-[140px] sm:mt-[30px] items-center border-black/40'>
+                    <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
+                    <IoSearch />
+                </div>
+
+                <div className='mt-[35px] mb-5 flex flex-col gap-3'>
+                    {filteredData?.map(item => (
                         <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item.id}>
                             <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                             <div className='flex items-center gap-10 sm:gap-4'>
@@ -107,11 +126,39 @@ const Profile = () => {
                             </div>
                         </Link>
                     ))
-                }
+                    }
+                </div>
+                <Link to={'/create'} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
+                    <IoMdPersonAdd />
+                </Link>
             </div>
-            <Link to={'/create'} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
-                <IoMdPersonAdd />
-            </Link>
+                :
+                <>
+                <div className='flex xl:flex-col gap-5'>
+            <Link to={`/add-price/${firm?.id}`} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] sm:mt-8 bg-black'><TiPlus className='text-3xl' /> Qo'shish</Link>
+            <Link to={`/remove-price/${firm?.id}`} className='text-white flex items-center justify-center gap-1 py-4 rounded-3xl text-xl font-medium w-[180px] sm:mt-8 bg-[#009FB2]'><TiMinus className='text-3xl' /> Ayirish</Link>
+          </div>
+          <div className='mt-[35px] mb-5 flex flex-col gap-3'>
+          {
+          firmData?.map(item => (
+            <div className='flex bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
+              <div>
+                <h3 className={`text-xl font-semibold sm:text-[16px] ${item.info && 'sm:h-[22px]'}`}>{moment(item.created).format("DD-MM-YYYY HH:mm")}</h3>
+                {item.info && <p title={item.info} className='sm:text-[12px] sm:py-1'>{item.info.length > 25 ? item.info.slice(0, 25) + '...' : item.info}</p>}
+              </div>
+              <div className='flex items-center xl:gap-10 sm:gap-4'>
+                <div className={`${item.type == 'ADD' ? 'text-green-600' : 'text-red-500'} text-right xl:flex gap-10`}>
+                  {item.amount_uzs && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${NumberSpacing(Number.parseInt(item.amount_uzs))}`}</p>}
+                  {item.amount_usd && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${isDollar ? `$${NumberSpacing(Number.parseInt(item.amount_usd))}` : NumberSpacing(Number.parseInt(item.amount_usd * dollar))}`}</p>}
+                </div>
+                <button onClick={() => deleteItem(item)} className='bg-[#009FB2] text-white xl:py-5 py-3.5 sm:px-2 px-4 sm:text-sm font-semibold '><MdDelete className='inline-block mb-[5px] sm:mb-[4px] text-lg mr-1 sm:text-[15px]' />O'chirish</button>
+              </div>
+            </div>
+          ))
+        }
+          </div>
+                </>
+          }
         </div>
     )
 }
