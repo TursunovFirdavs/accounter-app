@@ -62,7 +62,7 @@ const Profile = () => {
     );
 
     const firm = data?.find(item => item.name === 'firma')
-    const firmData = list?.filter(item => item.store === firm.id)
+    const firmData = list?.filter(item => item.store === firm?.id)
     console.log(firm);
     console.log(filteredData);
 
