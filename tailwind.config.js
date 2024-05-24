@@ -15,7 +15,13 @@ export default {
     },
     extend: {
       colors: {
-        'blue': '#B1E3FA'
+        'blue': '#B1E3FA',
+        'main-yellow': '#F4C402',
+        'main-green': '#5BC6A4',
+        'main-blue': '#0071F7',
+        'main-red': '#D23750',
+        'secondary-green': '#D9E6D4',
+        'secondary-light': '#F1F3F4'
       },
       screens: {
         'xl': {'min': '767px'},
