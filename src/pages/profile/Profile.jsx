@@ -35,11 +35,11 @@ const Profile = () => {
     const dollar = parseFloat(filteredValyut)
     console.log(userData);
 
-    const lends = userData !== undefined && userData !== 401 && userData?.filter(item => item.info == 'lend' &&
+    const lends = data?.filter(item => item.info == 'lend' &&
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
 
-    const borrows = userData !== undefined && userData !== 401 && userData?.filter(item => item.info == 'borrow' &&
+    const borrows = data?.filter(item => item.info == 'borrow' &&
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
 
