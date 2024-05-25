@@ -123,19 +123,19 @@ const Profile = () => {
             </div>
 
             <div className='sm:mt-5 mt-[100px] flex gap-3  justify-between'>
-                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient && 'border-main-yellow'} rounded-[8px] pt-1 pb-1.5 w-[160px] px-2`}>
+                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient ? 'border-main-yellow' : 'border-black/50'} rounded-[8px] pt-1 pb-1.5 max-w-[170px] w-full px-2`}>
                     <div>
-                        <p className={`text-[12px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
+                        <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                     </div>
-                    <img className='w-[35px] h-8 rounded-[5px]' src={lend} alt="" />
+                    <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                 </div>
-                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient && 'border-main-yellow'} rounded-[8px] pt-1 pb-1.5 w-[160px] px-2`}>
+                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient ? 'border-main-yellow' : 'border-black/50'} rounded-[8px] pt-1 pb-1.5 max-w-[170px] w-full px-2`}>
                     <div>
-                        <p className={`text-[12px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
+                        <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                     </div>
-                    <img className='w-[35px] h-8 rounded-[5px]' src={borrow} alt="" />
+                    <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={borrow} alt="" />
                 </div>
             </div>
 
