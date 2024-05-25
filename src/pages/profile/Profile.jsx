@@ -96,18 +96,18 @@ const Profile = () => {
                         <p className='text-xl font-medium sm:text-[13px]'>2024-yil 21-mart</p>
                     </div>
                 </div>
-                <div className='relative'>
+                <div onClick={() => setOpenDialog(true)}>
                     <div className='flex justify-end'>
                         <button onClick={() => setOpenDialog(true)} className='bg-red xl:hidden pb-1.5 pr-2'>see all</button>
                     </div>
-                    <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-7 px-3 rounded-t-[20px]'>
+                    <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-t-[20px]'>
                         <p className='text-lg sm:text-md'>Berilgan qarz</p>
-                        <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1'>
+                        <div className='flex gap-[30px] sm:gap-5 pr-3'>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                         </div>
                     </div>
-                    <div className='bg-main-red xl:pt-4 xl:pb-5 pt-2.5 pb-7 px-3 rounded-[20px] mt-[-20px] text-white'>
+                    <div className='bg-main-red xl:pt-4 xl:pb-5 pt-2.5 pb-10 px-3 rounded-[20px] mt-[-20px] text-white'>
                         <p className='text-lg sm:text-md'>Olingan qarz</p>
                         <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1'>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>

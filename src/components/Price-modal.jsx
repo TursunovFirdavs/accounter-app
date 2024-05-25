@@ -58,47 +58,47 @@ const OverallModal = (props) => {
 
   return (
     <div>
-      <Dialog open={true} onClose={handleClose} className="relative z-50">
+      <Dialog open={isOpen} onClose={handleClose} className="relative z-50">
         <div className="fixed inset-0 flex w-screen bg-black/60 m-auto items-center justify-center p-4 ">
           <Dialog.Panel className="w-[500px] sm:w-[350px] rounded-2xl bg-white">
             <Dialog.Title>
               <div className='px-5 pb-6'>
                 <div className='flex items-center justify-between pr-2'>
                   <h2 className='text-[24px] pt-4 pb-5 font-semibold'>Barcha hisobotlar</h2>
-                  <CgClose className='text-xl' />
+                  <CgClose onClick={handleClose} className='text-xl' />
                 </div>
                 <div className='flex flex-col gap-3'>
                   <div className='bg-main-blue xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
                     <p className='text-lg sm:text-md font-semibold'>Umumiy qarz</p>
-                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-2'>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
                     </div>
-                    <p className='text-[14px] font-semibold'>Bu umumiy siz boshqalarga bergan qarzlaringoz</p>
+                    <p className='text-[13px] font-semibold'>Bu umumiy siz boshqalarga bergan qarzlaringoz</p>
                   </div>
-                  <div className='bg-main-green xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
+                  <div className='bg-main-green xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px]'>
                     <p className='text-lg sm:text-md font-semibold'>To’langan</p>
-                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-2'>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(pain_uzs)}</p>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(pain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(pain_usd * dollar)))}</p>
                     </div>
-                    <p className='text-[14px] font-semibold'>Siz bergan qarzlarni qanchasini qaytarib olganingiz</p>
+                    <p className='text-[13px] font-semibold'>Siz bergan qarzlarni qanchasini qaytarib olganingiz</p>
                   </div>
-                  <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
+                  <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px]'>
                     <p className='text-lg sm:text-md font-semibold'>Qolgan</p>
-                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-2'>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                     </div>
-                    <p className='text-[14px] font-semibold'>Ayni damda boshqalardan olishengiz kerak bo'lgan mablag'ingiz</p>
+                    <p className='text-[13px] font-semibold'>Ayni damda boshqalardan olishengiz kerak bo'lgan mablag'ingiz</p>
                   </div>
                   <div className='bg-main-red xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
                     <p className='text-lg sm:text-md font-semibold'>Firmadan olingan</p>
-                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-2'>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
                     </div>
-                    <p className='text-[14px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>
+                    <p className='text-[13px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>
                   </div>
                 </div>
               </div>
