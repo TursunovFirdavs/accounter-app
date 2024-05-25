@@ -12,6 +12,8 @@ import { TiMinus, TiPlus } from 'react-icons/ti';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { MdDelete } from 'react-icons/md';
 import OverallModal from '../../components/Price-modal';
+import lend from '../../assets/lend.jpg'
+import borrow from '../../assets/borrow.png'
 
 const Profile = () => {
     const [search, setSearch] = useState('')
@@ -120,9 +122,21 @@ const Profile = () => {
                 </div>
             </div>
 
-            <div className='sm:mt-5 mt-[100px] flex justify-around'>
-                <p onClick={() => setISClient(false)} className={`text-white w-full text-center py-4 ${!isClient ? 'bg-black/70' : 'bg-black'}`}>Firma</p>
-                <p onClick={() => setISClient(true)} className={`bg-black text-white w-full text-center py-4 ${isClient ? 'bg-black/70' : 'bg-black'}`}>Client</p>
+            <div className='sm:mt-5 mt-[100px] flex gap-3  justify-between'>
+                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient && 'border-main-yellow'} rounded-[8px] pt-1 pb-1.5 w-[160px] px-2`}>
+                    <div>
+                        <p className={`text-[12px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
+                        <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                    </div>
+                    <img className='w-[35px] h-8 rounded-[5px]' src={lend} alt="" />
+                </div>
+                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient && 'border-main-yellow'} rounded-[8px] pt-1 pb-1.5 w-[160px] px-2`}>
+                    <div>
+                        <p className={`text-[12px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
+                        <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                    </div>
+                    <img className='w-[35px] h-8 rounded-[5px]' src={borrow} alt="" />
+                </div>
             </div>
 
             {isClient ?
