@@ -18,7 +18,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex justify-between items-center px-4 py-6 sm:py-4 sm:px-2.5'>
+    <div className='container liner flex justify-between items-center xl:px-4 xl:py-6 pt-4 pb-8 px-2.5'>
         <Link to={'/'} className='flex items-center gap-2 sm:gap-1'>
           <img className='w-[50px] sm:w-8' src={logo} alt="" />
           <h1 className='text-xl sm:text-[16px] font-semibold'>Company name</h1>   

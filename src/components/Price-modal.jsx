@@ -9,11 +9,12 @@ import { CgClose } from "react-icons/cg";
 
 const OverallModal = (props) => {
   const { isOpen, handleClose, selectedItem } = props
-  const { data } = useGetUsers()
+  const { data: userData } = useGetUsers()
   const { valyut } = useGetValyut()
   const { isDollar } = useSelector(state => state.isDollar)
   const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
   const dollar = parseFloat(filteredValyut)
+  const data = userData !== 401 ? userData : undefined
 
   const lends = data?.filter(item => item.info == 'lend');
 

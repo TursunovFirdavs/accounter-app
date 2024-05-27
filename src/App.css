@@ -1,3 +1,7 @@
 .form-shadow {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+.liner {
+    background: linear-gradient(90deg, rgba(224,210,244,0.7344187675070029) 0%, rgba(92,253,145,0.09576330532212884) 48%, rgba(251,224,153,0.583158263305322) 100%)
+}
