@@ -18,7 +18,8 @@ const Navbar = () => {
   }
 
   return (
-    <div className='container liner flex justify-between items-center xl:px-4 xl:py-6 pt-4 pb-8 px-2.5'>
+    <div className='liner'>
+      <div className='container flex justify-between items-center xl:px-4 xl:pt-6 xl:pb-[60px] pt-4 pb-8 px-2.5'>
         <Link to={'/'} className='flex items-center gap-2 sm:gap-1'>
           <img className='w-[50px] sm:w-8' src={logo} alt="" />
           <h1 className='text-xl sm:text-[16px] font-semibold'>Company name</h1>   
@@ -42,6 +43,7 @@ const Navbar = () => {
         </div>
         {/* <Link to={'/profile'} className='text-xl font-semibold px-6 py-2 border-black border-2 rounded-xl'>profile</Link> */}
 
+    </div>
     </div>
   )
 }
