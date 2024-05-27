@@ -83,7 +83,7 @@ const Profile = () => {
             <div className='flex relative gap-[50px] sm:gap-[60px] sm:flex-col'>
                 <div className=' bg-main-green rounded-t-[20px] h-[278px] sm:h-[100px] xl:w-[927px] sm:w-full'></div>
                 <div className='absolute top-[162px] sm:top-[40px] flex items-center gap-8 left-[50px] sm:left-[15px]'>
-                    <div className=' bg-[#FAFAFA] w-[225px] shadow-md sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
+                    <div className=' bg-[#FAFAFA] w-[225px] shadow sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
                         <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
                     </div>
                     <div>
@@ -134,16 +134,16 @@ const Profile = () => {
             </div>
             </div>
 
-            {isClient ?
-                <div>
-                    <div className='flex justify-between px-5 sm:px-3 border-2 rounded-[8px] mt-7 sm:mt-[30px] items-center border-black/30'>
+                    <div className='flex justify-between px-5 sm:px-3 search overflow-hidden  rounded-[30px] mt-7 sm:mt-[30px] items-center border-black/30'>
                         <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
                         <IoSearch />
                     </div>
+            {isClient ?
+                <div>
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {lends?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
                                 <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                                 <div className='flex items-center gap-10 sm:gap-4'>
                                     <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
@@ -154,17 +154,9 @@ const Profile = () => {
                         ))
                         }
                     </div>
-                    {/* <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
-                        <IoMdPersonAdd />
-                    </Link> */}
                 </div>
                 :
                 <div>
-                    <div className='flex justify-between px-5 sm:px-3 border mt-[140px] sm:mt-[30px] items-center border-black/40'>
-                        <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
-                        <IoSearch />
-                    </div>
-
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {borrows?.map(item => (
                             <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
@@ -178,12 +170,9 @@ const Profile = () => {
                         ))
                         }
                     </div>
-                    {/* <Link to={'/create'} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
-                        <IoMdPersonAdd />
-                    </Link> */}
                 </div>
             }
-            <Link to={`/create/${isClient}`} className='w-10 h-10 text-white rounded-full bg-main-green fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
+            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full search bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
                 <IoMdPersonAdd />
             </Link>
 
