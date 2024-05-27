@@ -83,7 +83,7 @@ const Profile = () => {
             <div className='flex relative gap-[50px] sm:gap-[60px] sm:flex-col'>
                 <div className=' bg-main-green rounded-t-[20px] h-[278px] sm:h-[100px] xl:w-[927px] sm:w-full'></div>
                 <div className='absolute top-[162px] sm:top-[40px] flex items-center gap-8 left-[50px] sm:left-[15px]'>
-                    <div className=' bg-[#FAFAFA] w-[225px] sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
+                    <div className=' bg-[#FAFAFA] w-[225px] shadow-md sm:w-[122px] h-[225px] sm:h-[122px] rounded-full flex items-center justify-center'>
                         <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
                     </div>
                     <div>
@@ -117,14 +117,14 @@ const Profile = () => {
 
             <div className='flex justify-center xl:justify-end'>
             <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
-                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 shadow ${!isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                     <div>
                         <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                     </div>
                     <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                 </div>
-                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 shadow ${isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                     <div>
                         <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
@@ -143,7 +143,7 @@ const Profile = () => {
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {lends?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-main-yellow justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md justify-between px-4 py-3 rounded-2xl' key={item.id}>
                                 <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                                 <div className='flex items-center gap-10 sm:gap-4'>
                                     <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
@@ -167,7 +167,7 @@ const Profile = () => {
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {borrows?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-main-green justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
                                 <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                                 <div className='flex items-center gap-10 sm:gap-4'>
                                     <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
