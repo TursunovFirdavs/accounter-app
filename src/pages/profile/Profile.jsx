@@ -55,29 +55,22 @@ const Profile = () => {
         }
     }
 
-    const total_usz = lends?.reduce((a, b) => {
-        return a + parseFloat(b.total_debt_uzs)
-    }, 0)
+    if(data?.length) {
+        var userLends = data.filter(item => item.info == 'lend')
+        var userBorrow = data.filter(item => item.info == 'borrow')
+    }
 
-    const pain_uzs = lends?.reduce((a, b) => {
-        return a + parseFloat(b.paid_debt_uzs)
-    }, 0)
-    const unpain_uzs = lends?.reduce((a, b) => {
+
+    const unpain_uzs = userLends?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_uzs)
     }, 0)
-    const total_usd = lends?.reduce((a, b) => {
-        return a + parseFloat(b.total_debt_usd)
-    }, 0)
-    const pain_usd = lends?.reduce((a, b) => {
-        return a + parseFloat(b.paid_debt_usd)
-    }, 0)
-    const unpain_usd = lends?.reduce((a, b) => {
+    const unpain_usd = userLends?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_usd)
     }, 0)
-    const my_unpain_usd = borrows?.reduce((a, b) => {
+    const my_unpain_usd = userBorrow?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_usd)
     }, 0)
-    const my_unpain_usz = borrows?.reduce((a, b) => {
+    const my_unpain_usz = userBorrow?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_uzs)
     }, 0)
 
@@ -124,14 +117,14 @@ const Profile = () => {
 
             <div className='flex justify-center xl:justify-end'>
             <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
-                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient ? 'border-main-yellow' : 'border-black/50'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 ${!isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                     <div>
                         <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                     </div>
                     <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                 </div>
-                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient ? 'border-main-yellow' : 'border-black/50'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 ${isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                     <div>
                         <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
                         <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
@@ -143,14 +136,14 @@ const Profile = () => {
 
             {isClient ?
                 <div>
-                    <div className='flex justify-between px-5 sm:px-3 border mt-7 sm:mt-[30px] items-center border-black/40'>
+                    <div className='flex justify-between px-5 sm:px-3 border-2 rounded-[8px] mt-7 sm:mt-[30px] items-center border-black/30'>
                         <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
                         <IoSearch />
                     </div>
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {lends?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                            <Link to={`/single/${item.id}`} className='flex items-center bg-main-yellow justify-between px-4 py-3 rounded-2xl' key={item.id}>
                                 <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                                 <div className='flex items-center gap-10 sm:gap-4'>
                                     <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
@@ -174,7 +167,7 @@ const Profile = () => {
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {borrows?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-blue justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                            <Link to={`/single/${item.id}`} className='flex items-center bg-main-green justify-between px-4 py-3 rounded-2xl' key={item.id}>
                                 <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
                                 <div className='flex items-center gap-10 sm:gap-4'>
                                     <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
@@ -190,7 +183,7 @@ const Profile = () => {
                     </Link> */}
                 </div>
             }
-            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
+            <Link to={`/create/${isClient}`} className='w-10 h-10 text-white rounded-full bg-main-green fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
                 <IoMdPersonAdd />
             </Link>
 

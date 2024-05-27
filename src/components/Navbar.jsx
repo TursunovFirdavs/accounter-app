@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className='liner'>
-      <div className='container flex justify-between items-center xl:px-4 xl:pt-6 xl:pb-[60px] pt-4 pb-8 px-2.5'>
+      <div className='container flex justify-between items-center xl:px-4 xl:pt-6 xl:pb-[60px] pt-5 pb-8 px-2.5'>
         <Link to={'/'} className='flex items-center gap-2 sm:gap-1'>
           <img className='w-[50px] sm:w-8' src={logo} alt="" />
           <h1 className='text-xl sm:text-[16px] font-semibold'>Company name</h1>   
