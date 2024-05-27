@@ -29,10 +29,11 @@ const Profile = () => {
   const { mutate } = useDeleteUser(id)
   const navigate = useNavigate()
   const { isDollar } = useSelector(state => state.isDollar)
+  console.log(user);
 
 
   const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
-    const dollar = parseFloat(filteredValyut)
+  const dollar = parseFloat(filteredValyut)
 
   const deleteUser = () => {
     mutate(id, {
@@ -48,7 +49,7 @@ const Profile = () => {
 
   const NumberSpacing = (num) => {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-}
+  }
 
   const deleteItem = (item) => {
     setOpenDialog(true)
@@ -59,23 +60,27 @@ const Profile = () => {
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
       <div className='relative'>
-        <div className=' bg-blue h-[278px] sm:h-[100px] w-full'></div>
+        <div className=' bg-blue rounded-t-[20px] h-[278px] sm:h-[100px] w-full'></div>
 
-        <div className='absolute top-[165px] sm:top-[40px] sm:left-[15px] flex items-center gap-8 sm:gap-4 left-[50px]'>
+        <div className='absolute top-[165px] sm:top-[40px] sm:left-[15px] flex items-center gap-8 left-[50px]'>
           <div className='bg-[#FAFAFA] w-[225px] sm:w-[122px] sm:h-[122px] h-[225px] rounded-full flex items-center justify-center'>
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>
           <div className='flex flex-col mb-7'>
             <p className='text-5xl pb-6 sm:pb-2.5 h-[100px] sm:h-[65px] flex items-end w-[720px] font-semibold sm:text-[22px] sm:w-[200px]'>{user?.name?.slice(0, 1).toUpperCase() + user?.name?.slice(1, user?.name?.length)}</p>
-            <div className='flex gap-[55px]'>
+            <div className='flex gap-[5px] justify-between max-w-[300px] w-full'>
               <div className='text-xl font-medium flex items-center gap-1 mb-[2px] sm:text-sm '>
                 <FaPhone className='mt-[2px]' />
-                <p>{`+998 ${user?.phone_number}`}</p>
+                <p>{user?.phone_number?.length ? `${user?.phone_number}` : 'Kiritilmagan'}</p>
               </div>
               <div className='flex items-center gap-8'>
-                <div className="flex items-center gap-2">
-                  <Link to={`/single/edit/${id}`}><FaRegEdit className='text-xl sm:text-sm' /></Link>
-                  <RiDeleteBin5Line onClick={() => deleteUser(id)} className='text-xl cursor-pointer sm:text-sm text-red-500' />
+                <div className="flex items-center gap-3">
+                  <div className=' bg flex items-center justify-center shadow-md border rounded-sm py-[5px] px-1.5'>
+                    <Link to={`/single/edit/${id}`}><FaRegEdit className='text-xl sm:text-[16px]' /></Link>
+                  </div>
+                  <div className=' bg flex items-center justify-center shadow-md border rounded-sm py-[5px] px-1.5'>
+                    <RiDeleteBin5Line onClick={() => deleteUser(id)} className='text-xl cursor-pointer sm:text-[16px] text-red-500' />
+                  </div>
                 </div>
               </div>
             </div>
@@ -85,7 +90,7 @@ const Profile = () => {
         <div className='mt-[120px] sm:mt-[80px] flex flex-col gap-2 sm:gap-1 mb-4'>
           <div className='text-xl sm:text-[14px] sm:leading-[24px] font-semibold'>
             <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-2 sm:mr-1' />
-            <span>Manzil:</span> {user?.location}
+            <span>Manzil:</span> {user?.location.length ? user?.location : 'Kiritilmagan'}
           </div>
           <div className='flex items-center gap-2 sm:gap-1'>
             <RiAccountPinBoxFill className='text-xl sm:text-sm' />

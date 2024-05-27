@@ -22,7 +22,7 @@ const ClientForm = ({ submit, initialValue, loading }) => {
         <label className='text-lg mb-1 mt-4' htmlFor="address">Lokatsiya</label>
         <input className='p-3 outline-none border-2 rounded-lg' {...register('location')} type="text" placeholder='Address' id='address' />
         <label className='text-lg mb-1 mt-4' htmlFor="number">Telefon raqam</label>
-        <input className='p-3 outline-none border-2 rounded-lg' {...register('phone_number')} type="text" placeholder='Numer' id='number' />
+        <input className='p-3 outline-none border-2 rounded-lg' {...register('phone_number')} type="number" placeholder='Numer' id='number' />
         <button disabled={loading ? true : false} className={`w-full bg-[#00C1CF] text-lg font-medium text-white py-3 rounded-3xl m-auto my-[60px]`} type='submit'>{initialValue ? 'O`zgartirish' : 'Qo`shish'}</button>
       </form>
     </div>
