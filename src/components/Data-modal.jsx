@@ -26,15 +26,15 @@ const DataModal = ({ isOpen, handleClose, selectedItem }) => {
                     <Dialog.Panel className="w-[500px] sm:w-[320px] rounded-2xl bg-white">
                         <Dialog.Title>
                             <div className='px-[55px] sm:px-8 py-[40px] sm:py-7'>
-                                <div className='flex gap-3 justify-between'>
+                                <div className='flex gap-3 justify-between border-b py-1'>
                                     <p className='font-semibold'>Sana:</p>
                                     <p>{moment(selectedItem?.created).format("DD-MM-YYYY HH:mm")},</p>
                                 </div>
-                                <div className='flex gap-3 justify-between'>
+                                <div className='flex gap-3 justify-between border-b py-1'>
                                     <p className='font-semibold'>Amalyot:</p>
                                     <p>{`${selectedItem?.type == 'ADD' ? "Qo'shildi" : 'Ayirildi'}`}</p>
                                 </div>
-                                <div className='flex gap-3 justify-between'>
+                                <div className='flex gap-3 justify-between border-b py-1'>
                                     <p className='font-semibold'>Qancha:</p>
                                     <div className={`${selectedItem?.type == 'ADD' ? 'text-green-600' : 'text-red-500'}  xl:flex gap-10 text-end`}>
                                         {selectedItem?.amount_uzs &&
@@ -45,9 +45,12 @@ const DataModal = ({ isOpen, handleClose, selectedItem }) => {
                                         }
                                     </div>
                                 </div>
-                                <div className={`${!selectedItem?.info && 'flex gap-3 justify-between'}`}>
+                                <div className={`${!selectedItem?.info && 'flex gap-3 justify-between border-b py-1'}`}>
                                     <p className='font-semibold'>Izoh:</p>
                                     <p>{selectedItem?.info ? selectedItem?.info : 'Kiritilmagan'}</p>
+                                </div>
+                                <div className='flex items-center justify-center mt-8'>
+                                    <button onClick={handleClose} className='bg-gray-300/40 xl:w-[100px] w-[150px] pt-1.5 pb-2 rounded-2xl font-bold text-lg sm:text-sm'>Yopish</button>
                                 </div>
                             </div>
                         </Dialog.Title>
