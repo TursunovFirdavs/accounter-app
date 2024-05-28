@@ -139,7 +139,7 @@ const Profile = () => {
                         <IoSearch />
                     </div>
             {isClient ?
-                <div>
+                <div className='pb-7'>
 
                     <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                         {lends?.map(item => (

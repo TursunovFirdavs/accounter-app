@@ -17,33 +17,29 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
+import UserDeleteModal from '../../components/DeleteUserModal';
 
 
 const Profile = () => {
   const { id } = useParams()
   const [openDialog, setOpenDialog] = useState(false)
+  const [userModal, setUserModal] = useState(false)
   const [modalItem, setModalItem] = useState(null)
-  const { data: user, isLoading } = useGetSingleUser(id)
+  const [userItem, setUserItem] = useState(null)
+  const { data: userData, isLoading } = useGetSingleUser(id)
   const { data: list } = useGetDebtList()
   const { data: valyut } = useGetValyut()
   const { mutate } = useDeleteUser(id)
   const navigate = useNavigate()
   const { isDollar } = useSelector(state => state.isDollar)
-  console.log(user);
 
+  if (userData === 401) {
+    navigate('/login')
+}
 
+  const user = userData !== 401 ? userData : undefined
   const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
   const dollar = parseFloat(filteredValyut)
-
-  const deleteUser = () => {
-    mutate(id, {
-      onSuccess: (res) => {
-        console.log(res)
-        navigate('/profile')
-      },
-      onError: err => console.log(err)
-    })
-  }
 
   const data = list?.filter(item => item.store == id)
 
@@ -56,6 +52,11 @@ const Profile = () => {
     setModalItem(item)
   }
 
+  const handleDeleteUser = () => {
+    setUserModal(true)
+    setUserItem(user)
+  }
+
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
     <div>
@@ -63,7 +64,7 @@ const Profile = () => {
         <div className=' bg-blue rounded-t-[20px] h-[278px] sm:h-[100px] w-full'></div>
 
         <div className='absolute top-[165px] sm:top-[40px] sm:left-[15px] flex items-center gap-8 left-[50px]'>
-          <div className='bg-[#FAFAFA] w-[225px] sm:w-[122px] sm:h-[122px] h-[225px] rounded-full flex items-center justify-center'>
+          <div className='bg-[#FAFAFA] shadow w-[225px] sm:w-[122px] sm:h-[122px] h-[225px] rounded-full flex items-center justify-center'>
             <img className='w-[190px] h-[190px sm:w-[80px] sm:h-[80px]' src={account} alt="" />
           </div>
           <div className='flex flex-col mb-7'>
@@ -78,8 +79,8 @@ const Profile = () => {
                   <div className=' bg flex items-center justify-center shadow-md border rounded-sm py-[5px] px-1.5'>
                     <Link to={`/single/edit/${id}`}><FaRegEdit className='text-xl sm:text-[16px]' /></Link>
                   </div>
-                  <div className=' bg flex items-center justify-center shadow-md border rounded-sm py-[5px] px-1.5'>
-                    <RiDeleteBin5Line onClick={() => deleteUser(id)} className='text-xl cursor-pointer sm:text-[16px] text-red-500' />
+                  <div onClick={handleDeleteUser} className=' cursor-pointer flex items-center justify-center shadow-md border rounded-sm py-[5px] px-1.5'>
+                    <RiDeleteBin5Line className='text-xl cursor-pointer sm:text-[16px] text-red-500' />
                   </div>
                 </div>
               </div>
@@ -90,7 +91,7 @@ const Profile = () => {
         <div className='mt-[120px] sm:mt-[80px] flex flex-col gap-2 sm:gap-1 mb-4'>
           <div className='text-xl sm:text-[14px] sm:leading-[24px] font-semibold'>
             <FaLocationDot className='text-xl sm:text-sm inline-block mb-2 mr-2 sm:mr-1' />
-            <span>Manzil:</span> {user?.location.length ? user?.location : 'Kiritilmagan'}
+            <span>Manzil:</span> {user?.location ? user?.location : 'Kiritilmagan'}
           </div>
           <div className='flex items-center gap-2 sm:gap-1'>
             <RiAccountPinBoxFill className='text-xl sm:text-sm' />
@@ -129,7 +130,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className='mt-[35px] mb-5 flex flex-col gap-3'>
+      <div className='mt-[35px] mb-5 flex flex-col gap-3 pb-7'>
         {
           data?.map(item => (
             <div className='flex bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
@@ -155,6 +156,14 @@ const Profile = () => {
         handleClose={() => {
           setOpenDialog(false);
           setSelectedItem({});
+        }}
+      />
+      <UserDeleteModal
+        isOpen={userModal}
+        selectedItem={userItem}
+        handleClose={() => {
+          setUserModal(false);
+          setUserItem({});
         }}
       />
     </div>
