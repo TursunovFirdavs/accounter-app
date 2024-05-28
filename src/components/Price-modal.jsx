@@ -69,8 +69,16 @@ const OverallModal = (props) => {
                   <CgClose onClick={handleClose} className='text-xl' />
                 </div>
                 <div className='flex flex-col gap-3'>
+                  <div className='bg-main-red xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
+                    <p className='text-lg sm:text-md font-semibold'>Kirim</p>
+                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
+                      <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
+                      <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
+                    </div>
+                    <p className='text-[13px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>
+                  </div>
                   <div className='bg-main-blue xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
-                    <p className='text-lg sm:text-md font-semibold'>Umumiy qarz</p>
+                    <p className='text-lg sm:text-md font-semibold'>Chiqim</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
                       <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
@@ -92,14 +100,6 @@ const OverallModal = (props) => {
                       <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p>
                     </div>
                     <p className='text-[13px] font-semibold'>Ayni damda boshqalardan olishengiz kerak bo'lgan mablag'ingiz</p>
-                  </div>
-                  <div className='bg-main-red xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-[20px] text-white'>
-                    <p className='text-lg sm:text-md font-semibold'>Firmadan olingan</p>
-                    <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
-                      <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
-                      <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
-                    </div>
-                    <p className='text-[13px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>
                   </div>
                 </div>
               </div>
