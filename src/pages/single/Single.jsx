@@ -17,14 +17,17 @@ import moment from 'moment';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { useGetValyut } from '../../service/query/useGetValyut';
 import { useSelector } from 'react-redux';
-import UserDeleteModal from '../../components/DeleteUserModal';
+import DeleteUserModal from '../../components/DeleteUserModal';
+import DataModal from '../../components/Data-modal';
 
 
 const Profile = () => {
   const { id } = useParams()
   const [openDialog, setOpenDialog] = useState(false)
   const [userModal, setUserModal] = useState(false)
+  const [archiveModal, setArchiveModal] = useState(false)
   const [modalItem, setModalItem] = useState(null)
+  const [archive, setArchive] = useState(null)
   const [userItem, setUserItem] = useState(null)
   const { data: userData, isLoading } = useGetSingleUser(id)
   const { data: list } = useGetDebtList()
@@ -55,6 +58,11 @@ const Profile = () => {
   const handleDeleteUser = () => {
     setUserModal(true)
     setUserItem(user)
+  }
+
+  const handleArchive = (item) => {
+    setArchiveModal(true)
+    setArchive(item)
   }
 
 
@@ -133,7 +141,7 @@ const Profile = () => {
       <div className='mt-[35px] mb-5 flex flex-col gap-3 pb-7'>
         {
           data?.map(item => (
-            <div className='flex bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
+            <div onClick={() => handleArchive(item)} className='flex shadow-md bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
               <div>
                 <h3 className={`text-xl font-semibold sm:text-[16px] ${item.info && 'sm:h-[22px]'}`}>{moment(item.created).format("DD-MM-YYYY HH:mm")}</h3>
                 {item.info && <p title={item.info} className='sm:text-[12px] sm:py-1'>{item.info.length > 25 ? item.info.slice(0, 25) + '...' : item.info}</p>}
@@ -158,12 +166,20 @@ const Profile = () => {
           setSelectedItem({});
         }}
       />
-      <UserDeleteModal
+      <DeleteUserModal
         isOpen={userModal}
         selectedItem={userItem}
         handleClose={() => {
           setUserModal(false);
           setUserItem({});
+        }}
+      />
+      <DataModal
+        isOpen={archiveModal}
+        selectedItem={archive}
+        handleClose={() => {
+          setArchiveModal(false);
+          setArchive({});
         }}
       />
     </div>
