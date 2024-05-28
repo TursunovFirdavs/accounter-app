@@ -142,7 +142,7 @@ const Profile = () => {
         {
           data?.map(item => (
             <div className='flex shadow-md bg-blue justify-between items-center pl-4 rounded-2xl overflow-hidden' key={item}>
-              <div className={`bg-red-300 ${!item.info && 'py-2 xl:py-3'} flex-1`} onClick={() => handleArchive(item)}>
+              <div className={`${!item.info && 'py-2 xl:py-3'} cursor-pointer flex-1`} onClick={() => handleArchive(item)}>
                 <h3 className={`text-xl font-semibold sm:text-[16px] ${item.info && 'sm:h-[22px]'}`}>{moment(item.created).format("DD-MM-YYYY HH:mm")}</h3>
                 {item.info && <p title={item.info} className='sm:text-[12px] sm:py-1'>{item.info.length > 25 ? item.info.slice(0, 25) + '...' : item.info}</p>}
               </div>
