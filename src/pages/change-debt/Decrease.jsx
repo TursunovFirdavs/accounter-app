@@ -18,7 +18,7 @@ const Decrease = () => {
   }
 
   return (
-    <div className='h-[75vh]'>
+    <div className='h-[70vh]'>
         <DebtForm title={'ayirish'} onsubmit={submit} loading={isPending} />
     </div>
   )

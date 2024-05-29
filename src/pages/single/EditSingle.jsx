@@ -21,7 +21,7 @@ const EditSingle = () => {
     }
 
     return (
-        <div>
+        <div className='pb-1'>
             <ClientForm submit={submit} initialValue={data} />
         </div>
     )
