@@ -119,14 +119,14 @@ const Profile = () => {
                 <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
                     <div onClick={() => setISClient(false)} className={`flex items-center justify-between border  ${!isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                         <div>
-                            <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
+                            <p className={`text-[13px] xl:text-[16px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
                             <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                         </div>
                         <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                     </div>
                     <div onClick={() => setISClient(true)} className={`flex items-center justify-between border ${isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                         <div>
-                            <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
+                            <p className={`text-[13px] xl:text-[16px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
                             <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                         </div>
                         <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={borrow} alt="" />
@@ -134,12 +134,12 @@ const Profile = () => {
                 </div>
             </div>
 
-            <div className='flex justify-between px-5 sm:px-3 search overflow-hidden  rounded-[30px] mt-7 sm:mt-[30px] items-center border-black/30'>
+            <div className='flex justify-between px-5 sm:px-3 search overflow-hidden  rounded-[30px] mt-[70px] sm:mt-[30px] items-center border-black/30'>
                 <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
                 <IoSearch />
             </div>
             {isClient ?
-                <div className='pb-7'>
+                <div className='pb-5'>
                     {lends?.length ?
                         <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                             {lends?.map(item => (
@@ -154,7 +154,7 @@ const Profile = () => {
                             ))
                             }
                         </div> :
-                        <div className='pt-10 pb-8 w-[250px] m-auto text-center text-[18px] font-bold text-gray-600'>
+                        <div className='pt-5 xl:pt-[50px] xl:pb-6 w-[250px] xl:w-[590px] m-auto text-center text-[18px] xl:text-[30px] font-bold text-gray-600'>
                             Hali hech qanday qarzdor qo'shilmagan
                         </div>
                     }
@@ -175,13 +175,13 @@ const Profile = () => {
                             ))
                             }
                         </div> :
-                        <div className='pt-10 pb-8 w-[250px] m-auto text-center text-[18px] font-bold text-gray-600'>
+                        <div className='pt-5 xl:pt-[50px] xl:pb-6 w-[250px] xl:w-[590px] m-auto text-center text-[18px] xl:text-[30px] font-bold text-gray-600'>
                             Hali hech qanday qarz qo'shilmagan
                         </div>
                     }
                 </div>
             }
-            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full search bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[70px] right-[100px] sm:right-[20px]'>
+            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full search bg-white fixed flex items-center justify-center bottom-[60px] sm:bottom-[70px] right-[100px] sm:right-[20px]'>
                 <IoMdPersonAdd />
             </Link>
 
