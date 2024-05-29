@@ -30,7 +30,7 @@ const createClient = () => {
   }
 
   return (
-    <div>
+    <div className='pb-7'>
       <ClientForm submit={submit} loading={isPending}  />
     </div>
   )

@@ -67,7 +67,7 @@ const Profile = () => {
 
 
   return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
-    <div>
+    <div className='pb-2'>
       <div className='relative'>
         <div className=' bg-blue rounded-t-[20px] h-[278px] sm:h-[100px] w-full'></div>
 
