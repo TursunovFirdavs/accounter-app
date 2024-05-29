@@ -18,7 +18,7 @@ const Increase = () => {
   }
 
   return (
-    <div className='h-[80vh]'>
+    <div className='h-[70vh]'>
       <DebtForm title={"qo'shish"} onsubmit={submit} loading={isPending} />
     </div>
   )
