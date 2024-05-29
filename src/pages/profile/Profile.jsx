@@ -55,7 +55,7 @@ const Profile = () => {
         }
     }
 
-    if(data?.length) {
+    if (data?.length) {
         var userLends = data.filter(item => item.info == 'lend')
         var userBorrow = data.filter(item => item.info == 'borrow')
     }
@@ -116,63 +116,72 @@ const Profile = () => {
             </div>
 
             <div className='flex justify-center xl:justify-end'>
-            <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
-                <div onClick={() => setISClient(false)} className={`flex items-center justify-between border-2 shadow ${!isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
-                    <div>
-                        <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
-                        <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
+                    <div onClick={() => setISClient(false)} className={`flex items-center justify-between border  ${!isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                        <div>
+                            <p className={`text-[13px] ${!isClient && 'text-main-yellow'} font-semibold`}>Mening qarzlar</p>
+                            <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                        </div>
+                        <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                     </div>
-                    <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
-                </div>
-                <div onClick={() => setISClient(true)} className={`flex items-center justify-between border-2 shadow ${isClient ? 'border-main-yellow' : 'border-black/30'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
-                    <div>
-                        <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
-                        <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                    <div onClick={() => setISClient(true)} className={`flex items-center justify-between border ${isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
+                        <div>
+                            <p className={`text-[13px] ${isClient && 'text-main-yellow'} font-semibold`} >Qarzdorlar</p>
+                            <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
+                        </div>
+                        <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={borrow} alt="" />
                     </div>
-                    <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={borrow} alt="" />
                 </div>
-            </div>
             </div>
 
-                    <div className='flex justify-between px-5 sm:px-3 search overflow-hidden  rounded-[30px] mt-7 sm:mt-[30px] items-center border-black/30'>
-                        <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
-                        <IoSearch />
-                    </div>
+            <div className='flex justify-between px-5 sm:px-3 search overflow-hidden  rounded-[30px] mt-7 sm:mt-[30px] items-center border-black/30'>
+                <input onChange={(e) => setSearch(e.target.value)} className='py-3 sm:py-2 flex-1 outline-none ' type="text" placeholder='Search...' />
+                <IoSearch />
+            </div>
             {isClient ?
                 <div className='pb-7'>
-
-                    <div className='mt-[35px] mb-5 flex flex-col gap-3'>
-                        {lends?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
-                                <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
-                                <div className='flex items-center gap-10 sm:gap-4'>
-                                    <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
-                                    <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
-                                    <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[94px] '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
-                                </div>
-                            </Link>
-                        ))
-                        }
-                    </div>
+                    {lends?.length ?
+                        <div className='mt-[35px] mb-5 flex flex-col gap-3'>
+                            {lends?.map(item => (
+                                <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                                    <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
+                                    <div className='flex items-center gap-10 sm:gap-4'>
+                                        <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
+                                        <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
+                                        <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[94px] '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
+                                    </div>
+                                </Link>
+                            ))
+                            }
+                        </div> :
+                        <div className='pt-10 pb-8 w-[250px] m-auto text-center text-[18px] font-bold text-gray-600'>
+                            Hali hech qanday qarzdor qo'shilmagan
+                        </div>
+                    }
                 </div>
                 :
-                <div>
-                    <div className='mt-[35px] mb-5 flex flex-col gap-3'>
-                        {borrows?.map(item => (
-                            <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
-                                <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
-                                <div className='flex items-center gap-10 sm:gap-4'>
-                                    <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
-                                    <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
-                                    <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[94px] '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
-                                </div>
-                            </Link>
-                        ))
-                        }
-                    </div>
+                <div className='pb-7'>
+                    {borrows?.length ?
+                        <div className='mt-[35px] mb-5 flex flex-col gap-3'>
+                            {borrows?.map(item => (
+                                <Link to={`/single/${item.id}`} className='flex items-center bg-[#f0efef] shadow-md border justify-between px-4 py-3 rounded-2xl' key={item.id}>
+                                    <h3 className='text-xl font-semibold sm:text-[16px]'>{item?.name.slice(0, 1).toUpperCase() + item?.name.slice(1, item?.name.length)}</h3>
+                                    <div className='flex items-center gap-10 sm:gap-4'>
+                                        <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
+                                        <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
+                                        <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[94px] '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
+                                    </div>
+                                </Link>
+                            ))
+                            }
+                        </div> :
+                        <div className='pt-10 pb-8 w-[250px] m-auto text-center text-[18px] font-bold text-gray-600'>
+                            Hali hech qanday qarz qo'shilmagan
+                        </div>
+                    }
                 </div>
             }
-            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full search bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[10px] right-[100px] sm:right-[20px]'>
+            <Link to={`/create/${isClient}`} className='w-10 h-10 rounded-full search bg-white fixed flex items-center justify-center bottom-6 sm:bottom-[70px] right-[100px] sm:right-[20px]'>
                 <IoMdPersonAdd />
             </Link>
 
