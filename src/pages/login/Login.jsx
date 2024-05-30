@@ -28,7 +28,7 @@ const Login = () => {
   }
 
   return (
-    <div className='pb-7'>
+    <div className='pb-[120px]'>
       <div className='w-[743px] sm:w-[352px] form-shadow border m-auto px-[57px] sm:px-4 rounded-3xl mt-[50px] sm:mt-[100px]'>
       <h2 className='text-3xl sm:text-2xl font-medium text-center py-7 sm:py-6 sm:mb-2'>Tizimga kirish</h2>
       <form className='flex flex-col' onSubmit={handleSubmit(submit)}>
