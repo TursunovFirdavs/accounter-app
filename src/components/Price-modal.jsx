@@ -70,23 +70,23 @@ const OverallModal = (props) => {
                   <CgClose onClick={handleClose} className='text-xl' />
                 </div>
                 <div className='flex flex-col gap-3'>
-                  <div className='bg-main-red xl:pt-4 xl:pb-9 pt-2.5 pb-6 pl-3 pr-2 rounded-[20px] text-white'>
+                  <div className='bg-main-red xl:pt-4 xl:pb-9 pt-2.5 pb-8 pl-3 pr-2 rounded-[20px] text-white'>
                     <p className='text-lg sm:text-md font-semibold'>{isFirm == 'firma' ? 'Kirim' : 'Olingan qarz'}</p>
                     <div className='flex gap-[30px] sm:gap-5 mb-1.5'>
-                      <p className='text-3xl bg-red-200 w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))} 00</p>
-                      <p className='text-3xl bg-red-200 w-[195px] sm:w-[180px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
+                      <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))} 00</p>
+                      <p className='text-3xl w-[195px] sm:w-[180px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
                     </div>
                     <p className='text-[13px] xl:text-[14px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>
                   </div>
-                  <div className='bg-main-blue xl:pt-4 xl:pb-9 pt-2.5 pb-6 pl-3 pr-2 rounded-[20px] text-white'>
+                  <div className='bg-main-blue xl:pt-4 xl:pb-9 pt-2.5 pb-8 pl-3 pr-2 rounded-[20px] text-white'>
                     <p className='text-lg sm:text-md font-semibold'>{isFirm == 'firma' ? 'Chiqim' : 'Berilgan qarz'}</p>
-                    <div className='flex gap-[30px] sm:gap-5 bg-red-400  mb-1.5'>
-                      <p className='text-3xl bg-red-200 w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
-                      <p className='text-3xl bg-red-300 w-[195px] sm:w-[180px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
+                    <div className='flex gap-[30px] sm:gap-5  mb-1.5'>
+                      <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)} </p>
+                      <p className='text-3xl w-[195px] sm:w-[180px] font-medium sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
                     </div>
                     <p className='text-[13px] xl:text-[14px] font-semibold'>Bu umumiy siz boshqalarga bergan qarzlaringoz</p>
                   </div>
-                  <div className='bg-main-green xl:pt-4 xl:pb-9 pt-2.5 pb-6 pl-3 pr-2 rounded-[20px]'>
+                  <div className='bg-main-green xl:pt-4 xl:pb-9 pt-2.5 pb-8 pl-3 pr-2 rounded-[20px]'>
                     <p className='text-lg sm:text-md font-semibold'>To’langan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(pain_uzs)}</p>
@@ -94,7 +94,7 @@ const OverallModal = (props) => {
                     </div>
                     <p className='text-[13px] xl:text-[14px] font-semibold'>Siz bergan qarzlarni qanchasini qaytarib olganingiz</p>
                   </div>
-                  <div className='bg-main-yellow xl:pt-4 xl:pb-9 pt-2.5 pb-6 px-3 rounded-[20px]'>
+                  <div className='bg-main-yellow xl:pt-4 xl:pb-9 pt-2.5 pb-8 px-3 rounded-[20px]'>
                     <p className='text-lg sm:text-md font-semibold'>Qolgan</p>
                     <div className='flex gap-[30px] sm:gap-5 pr-3 mb-1.5'>
                       <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
