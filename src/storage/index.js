@@ -4,6 +4,7 @@ export function loadState(key) {
       if (!serializedState) return undefined;
       return JSON.parse(serializedState);
     } catch (e) {
+      console.log('not');
       return undefined;
     }
   }

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../storage";
 
-const initialState = {
+const initialState = loadState('isFirm') || {
     isFirm: 'firma'
 }
 

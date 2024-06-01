@@ -28,7 +28,6 @@ const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {isFirm} = useSelector(state => state.isFirm)
-    console.log(isFirm);
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
@@ -39,7 +38,6 @@ const Profile = () => {
     const data = userData !== 401 ? userData : undefined
     const filteredValyut = valyut?.filter(valyut => valyut.Ccy == 'USD')[0]?.Rate?.slice(0, 5)
     const dollar = parseFloat(filteredValyut)
-    console.log(userData);
 
     const lends = data?.filter(item => item.info == 'lend' &&
         item.name?.toLowerCase().includes(search.toLowerCase())
@@ -49,7 +47,6 @@ const Profile = () => {
         item.name?.toLowerCase().includes(search.toLowerCase())
     );
 
-    console.log(data);
     const NumberSpacing = (num) => {
         if (num !== NaN) {
             return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
@@ -84,9 +81,6 @@ const Profile = () => {
     }, 0)
 
 
-    console.log(my_unpain_usz);
-
-
     return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
         <div className='relative'>
             <div className='flex relative gap-[50px] sm:gap-[60px] sm:flex-col'>
@@ -97,9 +91,9 @@ const Profile = () => {
                     </div>
                     <div>
                         <p className='text-5xl pb-4 sm:pb-0 font-semibold sm:text-[24px]'>{user?.username.slice(0, 1).toUpperCase() + user?.username.slice(1, user?.username.length)}</p>
-                        <select onChange={(e) => dispatch(changeFirm(e.target.value))} className='outline-none'>
-                            <option className='text-[14px]' value="firma">Firma</option>
-                            <option className='text-[14px]' value="do'kon">Do'kon</option>
+                        <select onChange={(e) => dispatch(changeFirm(e.target.value))} className='outline-none bg-white'>
+                            <option selected={isFirm == "firma" ? true : false} className='text-[14px]' value="firma">Firma</option>
+                            <option selected={isFirm == "do'kon" ? true : false} className='text-[14px]' value="do'kon">Do'kon</option>
                         </select>
                     </div>
                 </div>
