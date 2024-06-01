@@ -7,13 +7,14 @@ import { loadState } from '../../storage';
 import { useGetUsers } from '../../service/query/useGetUsers';
 import moment from 'moment';
 import { useGetValyut } from '../../service/query/useGetValyut';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TiMinus, TiPlus } from 'react-icons/ti';
 import { useGetDebtList } from '../../service/query/useGetDebtList';
 import { MdDelete } from 'react-icons/md';
 import OverallModal from '../../components/Price-modal';
 import lend from '../../assets/lend.jpg'
 import borrow from '../../assets/borrow.png'
+import { changeFirm } from '../../redux/is-firm';
 
 const Profile = () => {
     const [search, setSearch] = useState('')
@@ -25,6 +26,9 @@ const Profile = () => {
     const { data: list } = useGetDebtList()
     const user = loadState('user')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {isFirm} = useSelector(state => state.isFirm)
+    console.log(isFirm);
     const { isDollar } = useSelector(state => state.isDollar)
     useEffect(() => {
         !loadState('access') && navigate('/')
@@ -60,7 +64,6 @@ const Profile = () => {
         var userBorrow = data.filter(item => item.info == 'borrow')
     }
 
-
     const unpain_uzs = userLends?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_uzs)
     }, 0)
@@ -94,9 +97,9 @@ const Profile = () => {
                     </div>
                     <div>
                         <p className='text-5xl pb-4 sm:pb-0 font-semibold sm:text-[24px]'>{user?.username.slice(0, 1).toUpperCase() + user?.username.slice(1, user?.username.length)}</p>
-                        <select>
-                            <option value="firma">Firma</option>
-                            <option value="do'kon">Do'kon</option>
+                        <select onChange={(e) => dispatch(changeFirm(e.target.value))} className='outline-none'>
+                            <option className='text-[14px]' value="firma">Firma</option>
+                            <option className='text-[14px]' value="do'kon">Do'kon</option>
                         </select>
                     </div>
                 </div>
@@ -105,17 +108,24 @@ const Profile = () => {
                         <button onClick={() => setOpenDialog(true)} className='bg-red xl:hidden pb-1.5 pr-2'>see all</button>
                     </div>
                     <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-t-[20px]'>
-                        <p className='text-lg sm:text-md'>Olingan tavarlar</p>
+                        <p className='text-lg sm:text-md'>{isFirm == 'firma' ? 'Olingan tavarlar' : 'Olingan qarzlar'}</p>
                         <div className='flex gap-[30px] sm:gap-5 pr-3'>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
                         </div>
                     </div>
                     <div className='bg-main-red xl:pt-4 xl:pb-5 pt-2.5 pb-10 px-3 rounded-[20px] mt-[-20px] text-white'>
-                        <p className='text-lg sm:text-md'>Berilgan tavarlar</p>
+                        <p className='text-lg sm:text-md'>{isFirm == 'firma' ? 'Berilgan tavarlar' : 'Berilgan qarzlar'}</p>
                         <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1'>
+                            {isFirm == 'firma' ? 
+                            <>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)}</p>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p></>
+                            :
+                            <>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p></>
+                        }
                         </div>
                         <div className='xl:block hidden mt-10 '>
                             <button onClick={() => setOpenDialog(true)} className='text-xl font-semibold'>See all</button>
@@ -128,14 +138,14 @@ const Profile = () => {
                 <div className='sm:mt-5 mt-[40px] xl:w-[450px] w-full flex gap-3 justify-between'>
                     <div onClick={() => setISClient(false)} className={`flex items-center justify-between border  ${!isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                         <div>
-                            <p className={`text-[13px] xl:text-[16px] ${!isClient && 'text-main-yellow'} font-semibold`}>Olingan tavarlar</p>
+                            <p className={`text-[13px] xl:text-[16px] ${!isClient && 'text-main-yellow'} font-semibold`}>{isFirm == 'firma' ? 'Olingan tavarlar' : 'Olingan qarzlar'}</p>
                             <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                         </div>
                         <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={lend} alt="" />
                     </div>
                     <div onClick={() => setISClient(true)} className={`flex items-center justify-between border ${isClient ? 'border-main-yellow border-2' : 'search'} rounded-[8px] pt-1 pb-1.5 w-[170px] xl:w-[280px] px-2`}>
                         <div>
-                            <p className={`text-[13px] xl:text-[16px] ${isClient && 'text-main-yellow'} font-semibold`} >Berilgan tavarlar</p>
+                            <p className={`text-[13px] xl:text-[16px] ${isClient && 'text-main-yellow'} font-semibold`} >{isFirm == 'firma' ? 'Berilgan tavarlar' : 'Berilgan qarzlar'}</p>
                             <p className='text-[12px] text-gray-400 font-semibold'>Ro'yxati</p>
                         </div>
                         <img className='w-[38px] mt-0.5 h-[35px] rounded-[5px]' src={borrow} alt="" />
