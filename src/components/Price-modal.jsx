@@ -73,7 +73,7 @@ const OverallModal = (props) => {
                   <div className='bg-main-red xl:pt-4 xl:pb-9 pt-2.5 pb-8 pl-3 pr-2 rounded-[20px] text-white'>
                     <p className='text-lg sm:text-md font-semibold'>{isFirm == 'firma' ? 'Kirim' : 'Olingan qarz'}</p>
                     <div className='flex gap-[30px] sm:gap-5 mb-1.5'>
-                      <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))} 00</p>
+                      <p className='text-3xl w-[195px] sm:w-[210px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
                       <p className='text-3xl w-[195px] sm:w-[180px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
                     </div>
                     <p className='text-[13px] xl:text-[14px] font-semibold'>Siz boshqalardan olgan qarzengiz</p>

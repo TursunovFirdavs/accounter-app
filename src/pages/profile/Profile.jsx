@@ -152,7 +152,7 @@ const Profile = () => {
                 <IoSearch />
             </div>
             {isClient ?
-                <div className='pb-5'>
+                <div className='pb-6'>
                     {lends?.length ?
                         <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                             {lends?.map(item => (
@@ -173,7 +173,7 @@ const Profile = () => {
                     }
                 </div>
                 :
-                <div className='pb-7'>
+                <div className='pb-6'>
                     {borrows?.length ?
                         <div className='mt-[35px] mb-5 flex flex-col gap-3'>
                             {borrows?.map(item => (

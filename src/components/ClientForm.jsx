@@ -1,12 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
-const ClientForm = ({ submit, initialValue, loading }) => {
+const ClientForm = ({ submit, initialValue, loading, toggle }) => {
   const { register, handleSubmit } = useForm()
+  const {isFirm} = useSelector(state => state.isFirm)
+  console.log(isFirm);
 
   return (
     <div className='w-[743px] form-shadow sm:w-[352px] m-auto border px-[57px] sm:px-5 rounded-3xl mt-[50px] sm:mt-10 mb-[80px] sm:mb-[50px]'>
-      <h2 className='text-3xl sm:text-2xl font-medium text-center py-7 sm:py-6 sm:mb-2'>Qarzdor qo'shish</h2>
+      <h2 className='text-3xl sm:text-2xl font-medium text-center py-7 sm:py-6 sm:mb-2'>{isFirm == "firma" ? `${toggle == 'true' ? "Qarzdor qo'shish" : "Kirim"}` : `${toggle == 'true' ? "Qarzdor qo'shish" : "Qarz olish"}`}</h2>
       <form className='flex flex-col' onSubmit={handleSubmit(submit)}>
         <label className='text-lg mb-1' htmlFor="name">Ism</label>
         <input className='p-3 outline-none border-2 rounded-lg' {...register('name')} type="text" placeholder='Ism' id='name' />
