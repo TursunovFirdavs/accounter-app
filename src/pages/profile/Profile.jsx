@@ -61,6 +61,8 @@ const Profile = () => {
         var userBorrow = data.filter(item => item.info == 'borrow')
     }
 
+    console.log(userBorrow);
+
     const unpain_uzs = userLends?.reduce((a, b) => {
         return a + parseFloat(b.unpaid_debt_uzs)
     }, 0)
@@ -79,6 +81,8 @@ const Profile = () => {
     const total_usd = userLends?.reduce((a, b) => {
         return a + parseFloat(b.total_debt_usd)
     }, 0)
+
+    console.log(my_unpain_usz);
 
 
     return isLoading ? <div className='w-full h-[85vh] flex items-center justify-center'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> : (
@@ -104,8 +108,8 @@ const Profile = () => {
                     <div className='bg-main-yellow xl:pt-4 xl:pb-10 pt-2.5 pb-6 px-3 rounded-t-[20px]'>
                         <p className='text-lg sm:text-md'>{isFirm == 'firma' ? 'Olingan tavarlar' : 'Olingan qarzlar'}</p>
                         <div className='flex gap-[30px] sm:gap-5 pr-3'>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(parseFloat(my_unpain_usz))}</p>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{my_unpain_usz ? `${NumberSpacing(my_unpain_usz)}` : '0'}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{my_unpain_usd ? `${isDollar ? `$${NumberSpacing(my_unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(my_unpain_usd * dollar)))}` : '$0.00'}</p>
                         </div>
                     </div>
                     <div className='bg-main-red xl:pt-4 xl:pb-5 pt-2.5 pb-10 px-3 rounded-[20px] mt-[-20px] text-white'>
@@ -113,8 +117,8 @@ const Profile = () => {
                         <div className='flex gap-[30px] sm:gap-5 pr-3 mt-1'>
                             {isFirm == 'firma' ? 
                             <>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(total_usz)}</p>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}</p></>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{total_usz ? `${NumberSpacing(total_usz)}` : '0'}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{total_usd ? `${isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}` : '$0.00'}</p></>
                             :
                             <>
                             <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
@@ -161,7 +165,7 @@ const Profile = () => {
                                     <div className='flex items-center gap-10 sm:gap-4'>
                                         <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
                                         <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
-                                        <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[94px] '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
+                                        <p className='text-lg sm:text-[16px] font-semibold text-right max-w-[130px] sm:max-w-[115px] w-full '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
                                     </div>
                                 </Link>
                             ))
