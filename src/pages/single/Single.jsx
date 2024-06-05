@@ -149,7 +149,7 @@ const Profile = () => {
               <div className='flex items-center xl:gap-10 sm:gap-4'>
                 <div className={`${item.type == 'ADD' ? 'text-green-600' : 'text-red-500'} text-right xl:flex gap-10`}>
                   {item.amount_uzs && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${NumberSpacing(Number.parseInt(item.amount_uzs))}`}</p>}
-                  {item.amount_usd && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${isDollar ? `$${NumberSpacing(Number.parseInt(item.amount_usd))}` : NumberSpacing(Number.parseInt(item.amount_usd * dollar))}`}</p>}
+                  {item.amount_usd && <p className='text-xl font-semibold sm:text-sm'>{`${item.type == 'ADD' ? '+' : '-'}${isDollar ? `$${NumberSpacing(Number(item.amount_usd))}` : NumberSpacing(Number.parseInt(item.amount_usd * dollar))}`}</p>}
                 </div>
                 <button onClick={() => deleteItem(item)} className='bg-[#009FB2] text-white xl:py-5 py-3.5 sm:px-2 px-4 sm:text-sm font-semibold '><MdDelete className='inline-block mb-[5px] sm:mb-[4px] text-lg mr-1 sm:text-[15px]' />O'chirish</button>
               </div>

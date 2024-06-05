@@ -121,8 +121,8 @@ const Profile = () => {
                             <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{total_usd ? `${isDollar ? `$${NumberSpacing(total_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(total_usd * dollar)))}` : '$0.00'}</p></>
                             :
                             <>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{NumberSpacing(unpain_uzs)}</p>
-                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}</p></>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-medium sm:text-[24px]'>{unpain_uzs ? `${NumberSpacing(unpain_uzs)}`: '0'}</p>
+                            <p className='text-3xl w-[195px] sm:w-[160px] font-semibold sm:text-[24px]'>{unpain_usd ? `${isDollar ? `$${NumberSpacing(unpain_usd?.toFixed(2))}` : NumberSpacing((Number.parseInt(unpain_usd * dollar)))}` : '$0.00'}</p></>
                         }
                         </div>
                         <div className='xl:block hidden mt-10 '>
@@ -165,7 +165,7 @@ const Profile = () => {
                                     <div className='flex items-center gap-10 sm:gap-4'>
                                         <p className='sm:hidden'>{moment(item.updated).format("YYYY-MM-DD HH:mm:ss")}</p>
                                         <p className={`text-lg sm:text-[16px] font-semibold text-right ${isDollar ? 'w-[90px] sm:w-[80px]' : 'w-[130px] sm:w-[94px]'}`}>{`${isDollar ? `$${NumberSpacing(item.unpaid_debt_usd)}` : NumberSpacing(Number.parseInt(item.unpaid_debt_usd * dollar))}`}</p>
-                                        <p className='text-lg sm:text-[16px] font-semibold text-right max-w-[130px] sm:max-w-[115px] w-full '>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
+                                        <p className='text-lg sm:text-[16px] font-semibold text-right w-[130px] sm:w-[95px]'>{`${NumberSpacing(Number.parseInt(item.unpaid_debt_uzs))}`}</p>
                                     </div>
                                 </Link>
                             ))

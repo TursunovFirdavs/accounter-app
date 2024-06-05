@@ -41,7 +41,7 @@ const DataModal = ({ isOpen, handleClose, selectedItem }) => {
                                             <p className='text-xl font-semibold sm:text-sm'>{`${selectedItem?.type == 'ADD' ? '+' : '-'}${NumberSpacing(Number.parseInt(selectedItem?.amount_uzs))}`}</p>
                                         }
                                         {selectedItem?.amount_usd &&
-                                            <p className='text-xl font-semibold sm:text-sm'>{`${selectedItem?.type == 'ADD' ? '+' : '-'}${isDollar ? `$${NumberSpacing(Number.parseInt(selectedItem?.amount_usd))}` : NumberSpacing(Number.parseInt(selectedItem?.amount_usd * dollar))}`}</p>
+                                            <p className='text-xl font-semibold sm:text-sm'>{`${selectedItem?.type == 'ADD' ? '+' : '-'}${isDollar ? `$${NumberSpacing(Number(selectedItem?.amount_usd))}` : NumberSpacing(Number.parseInt(selectedItem?.amount_usd * dollar))}`}</p>
                                         }
                                     </div>
                                 </div>
